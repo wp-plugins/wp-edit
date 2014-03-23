@@ -12,12 +12,18 @@ Take complete control over the WordPress content editor.
 
 == Description ==
 
-This plugin is intended for the new WordPress version 3.9.1.  DO NOT use this plugin on the current version of WordPress (3.8.2).  IT WILL BREAK.
+= ONLY Compatible with WordPress 3.9.1 and above =
+* This plugin is intended for the new WordPress version 3.9.1.  
+* DO NOT use this plugin on the current version of WordPress (3.8.2).  
+* IT WILL BREAK YOUR WEBSITE.
+* This plugin (at this time) should ONLY be used in development environments for testing; NO production sites.
 
-This plugin is a successor of "Ultimate Tinymce".  
-It is a complete code rewrite.  A new admin panel has been created; new tabs and options; and increased code optimization.  This plugin has gone from a whopping 4 megabytes to an extremely lean 500K... WOW!
+= The future of Ultimate Tinymce =
+* This plugin is a successor of ["Ultimate Tinymce"](http://wordpress.org/plugins/ultimate-tinymce/).  
+* It is a complete code rewrite.  A new admin panel has been created; new tabs and options; and increased code optimization.  
+* This plugin has gone from a whopping 4 megabytes to an extremely lean 500k... WOW!
 
-I wanted to get this plugin hosted on the WordPress repository so that when the new version is released, I can make the transition as easy as possible.
+I wanted to get this plugin hosted on the WordPress repository so when the new version of WP is released, I can make the transition as easy as possible for everyone.
 
 This description will be updated when WordPress is updated to 3.9.1; currently scheduled for April 15th, 2014.
 
