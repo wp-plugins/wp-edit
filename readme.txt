@@ -35,7 +35,7 @@ WP Edit will provide new buttons, additional options, and extended formatting ab
 * Use shortcodes to insert columns.. similar to "magazine" style layouts, in your content areas.
 
 There are many more features in WP Edit.. too many to list.  
-Additionally, dedicated plugin support is provided via our ["Support Forum"}(http://forum.wpeditpro.com/).
+Additionally, dedicated plugin support is provided via our ["Support Forum"](http://forum.wpeditpro.com/).
 
 
 == Installation ==
