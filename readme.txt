@@ -40,11 +40,28 @@ Additionally, dedicated plugin support is provided via our ["Support Forum"](htt
 
 == Installation ==
 
-Upload the `wp_edit` folder to the `/wp-content/plugins/` directory.
+* Download the plugin from this page.
+* Save the .zip file to a location on your computer.
+* Open the WP admin panel, and click "Plugins" -> "Add new".
+* Click "upload".. then browse to the .zip file downloaded from this page.
+* Click "Install".. and then "Activate plugin".
+
+OR...
+* From the WP admin panel, click "Plugins" -> "Add new".
+* In the browser input box, type "WP Edit".
+* Select the "WP Edit" plugin (authored by "josh401"), and click "Install".
+* Activate the plugin.
 
 OR...
 
-Activate the plugin through the 'Plugins' menu in WordPress.
+* Download the plugin from this page.
+* Extract the .zip file to a location on your computer.
+* Use either FTP or your hosts cPanel to gain access to your website file directories.
+* Browse to the `wp-content/plugins` directory.
+* Upload the extracted `wp_edit` folder to this directory location.
+* Open the WP admin panel.. click the "Plugins" page.. and click "Activate" under the newly added "WP Edit" plugin.
+
+
 
 == Frequently asked questions ==
 
@@ -54,7 +71,7 @@ There is an option in WP Edit, under the "Database" tab, which will attempt to c
 
 == Screenshots ==
 
-Please visit the website.
+Please visit the official ["WP Edit (Pro)"](http://wpeditpro.com) website.
 
 == Changelog ==
 
@@ -65,7 +82,7 @@ Please visit the website.
 
 = 1.0 =
 * 03/23/2014
-*Plugin created
+* Plugin created
 
 == Upgrade Notice ==
 
