@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: http://ultimatetinymcepro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 1.0
+ * Version: 1.1
  * Author: Josh Lobe
  * Author URI: http://ultimatetinymcepro.com
  * License: GPL2
