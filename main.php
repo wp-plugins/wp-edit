@@ -965,7 +965,7 @@ class wp_edit {
                         foreach ($options_buttons as $toolbar => $icons) {
 							
 							if($toolbar === 'toolbar2') {
-								echo '<div class="block_tinymce_toolbars" style="width:965px;">';
+								echo '<div class="block_tinymce_toolbars" style="width:87%;">';
 							}
                         
                             if($toolbar !== 'tmce_container') {
@@ -1553,21 +1553,18 @@ class wp_edit {
                 $editor_text_direction = isset($options_editor['editor_text_direction'])  ? $options_editor['editor_text_direction'] : 'ltr';
 				
 				?>
-                <div id="block_container_editor_table">
-                    <table cellpadding="8">
+                <div id="block_container_editor">
+                    
+                    <table id="block_container_editor_table" cellpadding="8">
                     <tbody>
+                    
                     <tr><td><?php _e('Enable Editor Settings', 'wp_edit_langs'); ?></td>
                         <td>
                         <input id="enable_editor" type="checkbox" value="1" name="enable_editor" <?php echo $enable_editor; ?> />
                         <label for="enable_editor"><?php _e('Executes the values set below when initiating the content editor.', 'wp_edit_langs'); ?></label>
                         </td>
                     </tr>
-                    </tbody>
-                    </table>
-                    <br />
                     
-                    <table id="" cellpadding="8">
-                    <tbody>
                     <tr><td><?php _e('Editor Font', 'wp_edit_langs'); ?></td>
                         <td class="jwl_user_cell">
                         <input id="editor_font" type="text" name="editor_font" value="<?php echo $editor_font; ?>" />
@@ -1788,13 +1785,13 @@ class wp_edit {
                 <p><?php _e('These options specifically affect how widgets are handled.', 'wp_edit_langs'); ?></p>
                 
                 <form method="post" action="">
-                    <div id="block_container_editor_table">
+                    <div id="block_container_widgets">
                         
                         <?php
                         $widget_builder = isset($options_widgets['widget_builder']) && $options_widgets['widget_builder'] === '1' ? 'checked="checked"' : '';
                         ?>
                         
-                        <table cellpadding="8">
+                        <table id="block_container_editor_table" cellpadding="8">
                         <tbody>
                         <tr><td><?php _e('Widget Builder', 'wp_edit_langs'); ?></td>
                             <td>
@@ -1950,13 +1947,13 @@ class wp_edit {
                     <h3><?php _e('Signoff Text', 'wp_edit_langs'); ?></h3>
                     <p><?php _e('Use the editor below to create a content chunk that can be inserted anywhere using the', 'wp_edit_langs'); ?> <strong>[signoff]</strong> <?php _e('shortcode.', 'wp_edit_langs'); ?></p>
                     
-                    <table cellpadding="8" width="80%">
+                    <table cellpadding="8" width="100%">
                     <tbody>
                     <tr><td>
 						<?php
                         $content = isset($options_extras['signoff_text']) ? $options_extras['signoff_text'] : 'Please enter text here...';
                         $editor_id = 'wp_edit_signoff';
-                        $args = array('textarea_rows' => 5);
+                        $args = array('textarea_rows' => 10, 'width' => '100px');
                         wp_editor( $content, $editor_id, $args );
                         ?>
                     </td></tr>

@@ -34,8 +34,7 @@
 
 
 .draggable_container {
-	background: #D8DCF1;
-	width: 960px;
+	width: 87%;
 	min-height: 100px;
 	
 	-moz-box-shadow: 0 0 5px #888;
@@ -48,12 +47,12 @@
 }
 
 .droppable { 
-	width: 960px; 
+	width: 87%; 
 	min-height: 38px;
 	display: inline-block;
 }
 .droppable_rows2_3_4 { 
-	width: 960px; 
+	width: 100%; 
 	min-height: 38px;
 }
 li.icon_button {
@@ -67,6 +66,7 @@ li.icon_button {
 	float: left;
 	padding-top: 5px;
 	margin: 2px 2px 0 2px;
+	color: #515151;
 }
 .icon_button:hover {
 	-moz-box-shadow:    inset 0 0 5px #999, 0 0 5px 5px #FFF;

@@ -29,7 +29,7 @@ jQuery(document).ready(function($) {
 		//message: '<p>Available in <a href="http://ultimatetinymcepro.com" target="_blank">WP Edit Pro</a>.</p>', 
 		//css: {border: '2px solid #ccc', width: '80%'},
 		cursorReset: 'default',
-		overlayCSS: {cursor: 'pointer', backgroundColor: '#565656', borderRadius: '5px'},
+		overlayCSS: {cursor: 'pointer', backgroundColor: '#C1C1C1', borderRadius: '5px'},
 		baseZ: 1
 	}); 
 	
