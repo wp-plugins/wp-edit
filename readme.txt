@@ -77,11 +77,13 @@ Please visit the official ["WP Edit (Pro)"](http://wpeditpro.com) website.
 
 = 1.1 =
 * 04/10/2014
+
 * Fixed styling on different screen resolutions.
 * Updated readme.txt file.
 
 = 1.0 =
 * 03/23/2014
+
 * Plugin created
 
 == Upgrade Notice ==
