@@ -47,6 +47,7 @@ Additionally, dedicated plugin support is provided via our ["Support Forum"](htt
 * Click "Install".. and then "Activate plugin".
 
 OR...
+
 * From the WP admin panel, click "Plugins" -> "Add new".
 * In the browser input box, type "WP Edit".
 * Select the "WP Edit" plugin (authored by "josh401"), and click "Install".
