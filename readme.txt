@@ -14,7 +14,7 @@ Take complete control over the WordPress content editor.
 
 = Description =
 
-WP Edit is built around three years of custom WordPress development. It is contstantly updated with new features (many from requests), and security enhancements. WP Edit adds extensive, additional editing functionality to the default WordPress editor.
+WP Edit is built around three years of custom WordPress development. WP Edit adds extensive, additional editing functionality to the default WordPress editor. Begin creating content like the pros; without knowing a single bit of HTML or CSS.
 
 = ONLY Compatible with WordPress 3.9.1 and above =
 * This plugin is intended for WordPress versions 3.9, and above.  
@@ -25,7 +25,7 @@ WP Edit is built around three years of custom WordPress development. It is conts
 * It is a complete code rewrite.  A new admin panel has been created; new tabs and options; and increased code optimization.  
 * This plugin has gone from a whopping 4 megabytes to an extremely lean 500k... WOW!
 
-= Features =
+= Most Powerful Features =
 WP Edit will provide new buttons, additional options, and extended formatting abilities to the exisiting content editor.
 
 * Easily insert images, media, YouTube videos, and clip art.
@@ -34,24 +34,42 @@ WP Edit will provide new buttons, additional options, and extended formatting ab
 * Easily access all shortcodes available to your WordPress environment; and insert them into the content editor.
 * Use shortcodes to insert columns.. similar to "magazine" style layouts, in your content areas.
 
-There are many more features in WP Edit.. too many to list.  
-Additionally, dedicated plugin support is provided via our ["Support Forum"](http://forum.wpeditpro.com/).
+= Why should you use this plugin? =
+Because WP Edit is the culmination of three years development in the WordPress content editor. You can begin creating content (with advanced layouts); easily insert all types of external media (YouTube, Vimeo, etc.); adjust fonts, styles, colors, and sizes; and much more!
+
+= What is included in the free version? =
+* Drag and drop functionality for custom creation of the top row of editor buttons.
+* Adds additional editor buttons such as subscript, superscript, insert media, emoticons, search and replace, html editor, preview.. and many more.
+* Add your custom editor to excerpt areas and profile descriptions.
+* Allow shortcodes in excerpt and widget areas.
+* Highlight admin posts/pages based on status (green = published, yellow = draft, etc.)
+* Easily import/export plugin options.
+
+= Why should you upgrade to WP Edit Pro? =
+* Drag and drop functionality for custom creation of all rows of editor buttons.
+* Powerful network installation functionality; WP Network Ready.
+* User roles for custom button arrangements; allow different user roles access to different editor buttons.
+* Extreme Custom Widget Builder - create custom widgets just like posts or pages.. and insert them into any widget area or the content editor.
+
+= Notes =
+* This plugin is provided "as-is"; within the scope of WordPress.  We will update this plugin to remain secure, and to follow WP coding standards.
+* If you prefer more "dedicated" support, with more advanced and powerful plugin features, please consider upgrading to ["WP Edit Pro"](http://wpeditpro.com). 
 
 
 == Installation ==
+
+* From the WP admin panel, click "Plugins" -> "Add new".
+* In the browser input box, type "WP Edit".
+* Select the "WP Edit" plugin (authored by "josh401"), and click "Install".
+* Activate the plugin.
+
+OR...
 
 * Download the plugin from this page.
 * Save the .zip file to a location on your computer.
 * Open the WP admin panel, and click "Plugins" -> "Add new".
 * Click "upload".. then browse to the .zip file downloaded from this page.
 * Click "Install".. and then "Activate plugin".
-
-OR...
-
-* From the WP admin panel, click "Plugins" -> "Add new".
-* In the browser input box, type "WP Edit".
-* Select the "WP Edit" plugin (authored by "josh401"), and click "Install".
-* Activate the plugin.
 
 OR...
 
