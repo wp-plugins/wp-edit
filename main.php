@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: http://ultimatetinymcepro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 1.1
+ * Version: 1.2
  * Author: Josh Lobe
  * Author URI: http://ultimatetinymcepro.com
  * License: GPL2
@@ -2149,7 +2149,7 @@ class wp_edit {
 							</p>
                             <form method="post" action="">
 								<?php wp_nonce_field('wp_edit_uninstall_nonce_check','wp_edit_uninstall_nonce'); ?>
-                                <input id="plugin" name="plugin" type="hidden" value="wp_edit/main.php" />
+                                <input id="plugin" name="plugin" type="hidden" value="wp-edit/main.php" />
                                 <input name="uninstall_confirm" id="uninstall_confirm" type="checkbox" value="1" /><label for="uninstall_confirm"></label> <strong><?php _e('Please confirm before proceeding','wp_edit_langs'); ?><br /><br /></strong>
                                 <input class="button-primary" name="uninstall" type="submit" value="<?php _e('Uninstall',''); ?>" />
                             </form>
@@ -2528,17 +2528,17 @@ add_action('init', 'wp_edit_init_tinymce');
 // Build extra plugins array
 function wp_edit_mce_external_plugins($init) {
 	
-	$init['directionality'] = plugins_url() . '/wp_edit/plugins/directionality/plugin.min.js';
-	$init['table'] = plugins_url() . '/wp_edit/plugins/table/plugin.min.js';
-	$init['anchor'] = plugins_url() . '/wp_edit/plugins/anchor/plugin.min.js';
-	$init['code'] = plugins_url() . '/wp_edit/plugins/code/plugin.min.js';
-	$init['emoticons'] = plugins_url() . '/wp_edit/plugins/emoticons/plugin.min.js';
-	$init['hr'] = plugins_url() . '/wp_edit/plugins/hr/plugin.min.js';
-	$init['insertdatetime'] = plugins_url() . '/wp_edit/plugins/insertdatetime/plugin.min.js';
-	$init['preview'] = plugins_url() . '/wp_edit/plugins/preview/plugin.min.js';
-	$init['print'] = plugins_url() . '/wp_edit/plugins/print/plugin.min.js';
-	$init['searchreplace'] = plugins_url() . '/wp_edit/plugins/searchreplace/plugin.min.js';
-	$init['visualblocks'] = plugins_url() . '/wp_edit/plugins/visualblocks/plugin.min.js';
+	$init['directionality'] = plugins_url() . '/wp-edit/plugins/directionality/plugin.min.js';
+	$init['table'] = plugins_url() . '/wp-edit/plugins/table/plugin.min.js';
+	$init['anchor'] = plugins_url() . '/wp-edit/plugins/anchor/plugin.min.js';
+	$init['code'] = plugins_url() . '/wp-edit/plugins/code/plugin.min.js';
+	$init['emoticons'] = plugins_url() . '/wp-edit/plugins/emoticons/plugin.min.js';
+	$init['hr'] = plugins_url() . '/wp-edit/plugins/hr/plugin.min.js';
+	$init['insertdatetime'] = plugins_url() . '/wp-edit/plugins/insertdatetime/plugin.min.js';
+	$init['preview'] = plugins_url() . '/wp-edit/plugins/preview/plugin.min.js';
+	$init['print'] = plugins_url() . '/wp-edit/plugins/print/plugin.min.js';
+	$init['searchreplace'] = plugins_url() . '/wp-edit/plugins/searchreplace/plugin.min.js';
+	$init['visualblocks'] = plugins_url() . '/wp-edit/plugins/visualblocks/plugin.min.js';
 	
 	return $init;
 }
