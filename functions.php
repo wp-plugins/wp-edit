@@ -660,7 +660,7 @@ if($plugin_options_posts['column_shortcodes'] == 1) {
 
 	function wp_edit_column_stylesheet() {
 	
-		wp_register_style('wp_edit_column-styles', WP_PLUGIN_URL.'/wp_edit/css/column-style.css');
+		wp_register_style('wp_edit_column-styles', WP_PLUGIN_URL.'/wp-edit/css/column-style.css');
 		wp_enqueue_style('wp_edit_column-styles');
 	}
 	add_action('wp_print_styles', 'wp_edit_column_stylesheet');
