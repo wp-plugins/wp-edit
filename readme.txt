@@ -90,7 +90,7 @@ There is an option in WP Edit, under the "Database" tab, which will attempt to c
 
 == Screenshots ==
 
-Please visit the official ["WP Edit (Pro)"](http://wpeditpro.com) website.
+Rather than bloat the plugin with screenshot images (they have to be stored in the plugin .zip file); please visit the ["WP Edit Knowledge Base"](http://learn.wpeditpro.com/plugin-screenshots/) for screenshots.
 
 == Changelog ==
 
