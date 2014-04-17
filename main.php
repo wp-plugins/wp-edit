@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: WP Edit
- * Plugin URI: http://ultimatetinymcepro.com
+ * Plugin URI: http://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 1.2
+ * Version: 1.3
  * Author: Josh Lobe
- * Author URI: http://ultimatetinymcepro.com
+ * Author URI: http://wpeditpro.com
  * License: GPL2
 */
 
@@ -1207,7 +1207,7 @@ class wp_edit {
 								_e('PayPal Donation', 'wp_edit_langs');
 								echo '</a>.<br /><br />';
                                 _e('Alternatively, the purchase of the ', 'wp_edit_langs');
-								echo '<a target="_blank" href="http://ultimatetinymcepro.com">';
+								echo '<a target="_blank" href="http://wpeditpro.com">';
 								_e('PRO Version', 'wp_edit_langs');
 								echo '</a> ';
 								_e('offers additional features and extended functionality; while also supporting the developer.', 'wp_edit_langs');
@@ -2168,7 +2168,7 @@ class wp_edit {
 	public function plugin_settings_link($links) {
 		
 		$settings_link = '<a href="admin.php?page=wp_edit_options">Settings</a>';
-		$settings_link2 = '<a href="http://ultimatetinymcepro.com">Go Pro!</a>';
+		$settings_link2 = '<a href="http://wpeditpro.com">Go Pro!</a>';
   		array_push( $links, $settings_link, $settings_link2 );
   		return $links;
 	}
