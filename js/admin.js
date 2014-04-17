@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
 	// Click message to alert Go Pro
 	$('#block_container_editor_table, #block_container_qr_codes, #block_buttons_tinymce_metabox, .block_tinymce_toolbars, #tmce_container_pro').click(function() {
 		
-		$( "<div>These features available in <a href='http://ultimatetinymcepro.com' target='_blank'>WP Edit Pro</a>.</div>" ).dialog({
+		$( "<div>These features available in <a href='http://wpeditpro.com' target='_blank'>WP Edit Pro</a>.</div>" ).dialog({
 			modal: true,
 			minWidth: 500,
 			title: 'WP Edit PRO',
