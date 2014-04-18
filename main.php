@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: http://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 1.3
+ * Version: 1.4
  * Author: Josh Lobe
  * Author URI: http://wpeditpro.com
  * License: GPL2
@@ -1472,14 +1472,14 @@ class wp_edit {
                 <tbody>
                 <tr><td><?php _e('Max Post Revisions', 'wp_edit_langs'); ?></td>
                     <td>
-                    <input type="text" name="post_title_field" value="<?php echo $max_post_revisions ?>" />
-                    <label for="max_post_revisions"><?php _e('Set max number of Post Revisions to store in database.', 'wp_edit_langs'); ?></label>
+                    <input type="text" name="max_post_revisions" value="<?php echo $max_post_revisions ?>" />
+                    <label for="max_post_revisions"><?php _e('Set max number of Post Revisions to store in database. (empty = unlimited)', 'wp_edit_langs'); ?></label>
                     </td>
                 </tr>
                 <tr><td><?php _e('Max Page Revisions', 'wp_edit_langs'); ?></td>
                     <td>
-                    <input type="text" name="post_title_field" value="<?php echo $max_page_revisions ?>" />
-                    <label for="max_page_revisions"><?php _e('Set max number of Page Revisions to store in database.', 'wp_edit_langs'); ?></label>
+                    <input type="text" name="max_page_revisions" value="<?php echo $max_page_revisions ?>" />
+                    <label for="max_page_revisions"><?php _e('Set max number of Page Revisions to store in database. (empty = unlimited)', 'wp_edit_langs'); ?></label>
                     </td>
                 </tr>
                 <tr><td><?php _e('Delete Revisions', 'wp_edit_langs'); ?></td>
@@ -1511,13 +1511,13 @@ class wp_edit {
                 <tr><td><?php _e('Hide Admin Posts', 'wp_edit_langs'); ?></td>
                     <td>
                     <input type="text" name="hide_admin_posts" value="<?php echo $hide_admin_posts ?>" />
-                    <label for="hide_admin_posts"><?php _e('Hide selected posts from admin view.', 'wp_edit_langs'); ?></label>
+                    <label for="hide_admin_posts"><?php _e('Hide selected posts from admin view. ID comma separated (1,5,14,256)', 'wp_edit_langs'); ?></label>
                     </td>
                 </tr>
                 <tr><td><?php _e('Hide Admin Pages', 'wp_edit_langs'); ?></td>
                     <td>
                     <input type="text" name="hide_admin_pages" value="<?php echo $hide_admin_pages ?>" />
-                    <label for="hide_admin_pages"><?php _e('Hide selected pages from admin view.', 'wp_edit_langs'); ?></label>
+                    <label for="hide_admin_pages"><?php _e('Hide selected pages from admin view. ID comma separated (1,5,14,256)', 'wp_edit_langs'); ?></label>
                     </td>
                 </tr>
                 </tbody>
@@ -2503,6 +2503,13 @@ function wp_edit_tinymce_init_various_values($init) {
 	
 	// Init table ability
 	$init['tools'] = 'inserttable';
+	
+	if(empty($init['fontsize_formats'])) {
+		$init['fontsize_formats'] = '6pt 8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 28pt 30pt 32pt 34pt 36pt 48pt 72pt';
+	}
+	else {
+		$init['fontsize_formats'] = $init['fontsize_formats'].' '.'6pt 16pt 20pt 22pt 26pt 28pt 30pt 32pt 34pt 48pt 72pt';
+	}
 	
 	return $init;
 }
