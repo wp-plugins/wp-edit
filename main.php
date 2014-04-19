@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: http://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 1.5
+ * Version: 1.6
  * Author: Josh Lobe
  * Author URI: http://wpeditpro.com
  * License: GPL2
@@ -522,7 +522,7 @@ class wp_edit {
 		*/
 		if(isset($_POST['submit_extras'])) {
 			
-			$options_extras['signoff_text'] = isset($_POST['wp_edit_signoff']) ? $_POST['wp_edit_signoff'] : 'Please enter text here...';
+			$options_extras['signoff_text'] = isset($_POST['wp_edit_signoff']) ? stripslashes($_POST['wp_edit_signoff']) : 'Please enter text here...';
 			
 			$options_extras['enable_qr'] = isset($_POST['enable_qr']) ? '1' : '0';
 			$options_extras['enable_qr_widget'] = isset($_POST['enable_qr_widget']) ? '1' : '0';
