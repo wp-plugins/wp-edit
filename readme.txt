@@ -55,6 +55,9 @@ Because WP Edit is the culmination of three years development in the WordPress c
 * This plugin is provided "as-is"; within the scope of WordPress.  We will update this plugin to remain secure, and to follow WP coding standards.
 * If you prefer more "dedicated" support, with more advanced and powerful plugin features, please consider upgrading to ["WP Edit Pro"](http://wpeditpro.com). 
 
+= Resources =
+* ["Complete Guide to WP Edit Buttons"](http://learn.wpeditpro.com/wp-edit-buttons-guide/)
+
 
 == Installation ==
 
