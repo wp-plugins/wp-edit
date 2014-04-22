@@ -18,7 +18,11 @@ WP Edit is built around three years of custom WordPress development. WP Edit add
 
 = ONLY Compatible with WordPress 3.9.1 and above =
 * This plugin is intended for WordPress versions 3.9, and above.  
-* DO NOT use this plugin on WordPress versions 3.8.2, and below. Instead, please use ["Ultimate Tinymce"](http://wordpress.org/plugins/ultimate-tinymce/).
+* DO NOT use this plugin on WordPress versions 3.8.3, and below. It will display eratic behavior.
+* A LOT has changed. I HIGHLY suggest reading the following two articles BEFORE installating this plugin:
+* ["WP Edit and WordPress 3.9"](http://wordpress.org/support/topic/wp-edit-and-wordpress-39-please-read?replies=7)
+* ["WordPress TinyMCE Editor"](http://learn.wpeditpro.com/wordpress-tinymce-editor/)
+* Reading those before installing this plugin will save you time, guaranteed!
 
 = The future of Ultimate Tinymce =
 * This plugin is the successor of ["Ultimate Tinymce"](http://wordpress.org/plugins/ultimate-tinymce/).  
