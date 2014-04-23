@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: http://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 1.6
+ * Version: 1.7
  * Author: Josh Lobe
  * Author URI: http://wpeditpro.com
  * License: GPL2
@@ -42,7 +42,7 @@ class wp_edit {
 					'toolbar2' => 'formatselect underline alignjustify forecolor pastetext removeformat charmap outdent indent undo redo wp_help', 
 					'toolbar3' => '', 
 					'toolbar4' => '',
-					'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig'
+					'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig advlink'
 				);
 	public $global_options_buttons_sidebars = array(
 					'add_opts' => array(
@@ -1043,6 +1043,7 @@ class wp_edit {
 											if($icon === 'codemagic') { $class = ''; $title = __('Code Magic', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'acheck') { $class = ''; $title = __('Accessibility Checker', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'image_orig') { $class = 'format-image'; $title = __('Image', 'wp_edit_langs'); $text = ''; }
+                                            if($icon === 'advlink') { $class = ''; $title = __('Insert/Edit Advanced Image', 'wp_edit_langs'); $text = ''; }
 											
 											// Custom Buttons
                                             
@@ -1139,6 +1140,7 @@ class wp_edit {
 											if($icon === 'codemagic') { $class = ''; $title = __('Code Magic', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'acheck') { $class = ''; $title = __('Accessibility Checker', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'image_orig') { $class = 'format-image'; $title = __('Image', 'wp_edit_langs'); $text = ''; }
+                                            if($icon === 'advlink') { $class = ''; $title = __('Insert/Edit Advanced Image', 'wp_edit_langs'); $text = ''; }
 										
 										// Custom Buttons
                                         
@@ -2454,7 +2456,7 @@ function wp_edit_wp_ajax_callback() {
 			'toolbar2' => 'formatselect underline alignjustify forecolor pastetext removeformat charmap outdent indent undo redo wp_help', 
 			'toolbar3' => '', 
 			'toolbar4' => '',
-			'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig'
+			'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig advlink'
 		);
 		
 		update_option('wp_edit_buttons', $reset_buttons);
@@ -2547,6 +2549,7 @@ function wp_edit_mce_external_plugins($init) {
 	$init['searchreplace'] = plugins_url() . '/wp-edit/plugins/searchreplace/plugin.min.js';
 	$init['visualblocks'] = plugins_url() . '/wp-edit/plugins/visualblocks/plugin.min.js';
 	$init['image_orig'] = plugins_url() . '/wp-edit/plugins/image_orig/plugin.min.js';
+	$init['advlink'] = plugins_url() . '/wp-edit/plugins/advlink/plugin.js';
 	
 	return $init;
 }

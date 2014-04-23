@@ -219,6 +219,9 @@ li.icon_button {
 #acheck:before {
 	content: url('../plugins/custom_plugins/acheck.png');
 }
+#advlink:before {
+	content: url('../plugins/custom_plugins/advlink.png');
+}
 
 
 
