@@ -1043,7 +1043,7 @@ class wp_edit {
 											if($icon === 'codemagic') { $class = ''; $title = __('Code Magic', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'acheck') { $class = ''; $title = __('Accessibility Checker', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'image_orig') { $class = 'format-image'; $title = __('Image', 'wp_edit_langs'); $text = ''; }
-                                            if($icon === 'advlink') { $class = ''; $title = __('Insert/Edit Advanced Image', 'wp_edit_langs'); $text = ''; }
+                                            if($icon === 'advlink') { $class = ''; $title = __('Insert/Edit Advanced Link', 'wp_edit_langs'); $text = ''; }
 											
 											// Custom Buttons
                                             
@@ -1140,7 +1140,7 @@ class wp_edit {
 											if($icon === 'codemagic') { $class = ''; $title = __('Code Magic', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'acheck') { $class = ''; $title = __('Accessibility Checker', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'image_orig') { $class = 'format-image'; $title = __('Image', 'wp_edit_langs'); $text = ''; }
-                                            if($icon === 'advlink') { $class = ''; $title = __('Insert/Edit Advanced Image', 'wp_edit_langs'); $text = ''; }
+                                            if($icon === 'advlink') { $class = ''; $title = __('Insert/Edit Advanced Link', 'wp_edit_langs'); $text = ''; }
 										
 										// Custom Buttons
                                         
