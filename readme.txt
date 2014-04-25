@@ -16,7 +16,7 @@ Take complete control over the WordPress content editor.
 
 WP Edit is built around three years of custom WordPress development. WP Edit adds extensive, additional editing functionality to the default WordPress editor. Begin creating content like the pros; without knowing a single bit of HTML or CSS.
 
-= ONLY Compatible with WordPress 3.9.1 and above =
+= ONLY Compatible with WordPress 3.9 and above =
 * This plugin is intended for WordPress versions 3.9, and above.  
 * DO NOT use this plugin on WordPress versions 3.8.3, and below. It will display eratic behavior.
 * A LOT has changed. I HIGHLY suggest reading the following two articles BEFORE installating this plugin:
