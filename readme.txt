@@ -16,18 +16,7 @@ Take complete control over the WordPress content editor.
 
 WP Edit is built around three years of custom WordPress development. WP Edit adds extensive, additional editing functionality to the default WordPress editor. Begin creating content like the pros; without knowing a single bit of HTML or CSS.
 
-= ONLY Compatible with WordPress 3.9 and above =
-* This plugin is intended for WordPress versions 3.9, and above.  
-* DO NOT use this plugin on WordPress versions 3.8.3, and below. It will display eratic behavior.
-* A LOT has changed. I HIGHLY suggest reading the following two articles BEFORE installating this plugin:
-* ["WP Edit and WordPress 3.9"](http://wordpress.org/support/topic/wp-edit-and-wordpress-39-please-read?replies=7)
-* ["WordPress TinyMCE Editor"](http://learn.wpeditpro.com/wordpress-tinymce-editor/)
-* Reading those before installing this plugin will save you time, guaranteed!
-
-= The future of Ultimate Tinymce =
-* This plugin is the successor of ["Ultimate Tinymce"](http://wordpress.org/plugins/ultimate-tinymce/).  
-* It is a complete code rewrite.  A new admin panel has been created; new tabs and options; and increased code optimization.  
-* This plugin has gone from a whopping 4 megabytes to an extremely lean 500k... WOW!
+["Subscribe to our Feedblitz List"](http://www.feedblitz.com/f/?Sub=950320); and receive news, update notices and more.
 
 = Most Powerful Features =
 WP Edit will provide new buttons, additional options, and extended formatting abilities to the exisiting content editor.
@@ -100,6 +89,12 @@ There is an option in WP Edit, under the "Database" tab, which will attempt to c
 Rather than bloat the plugin with screenshot images (they have to be stored in the plugin .zip file); please visit the ["WP Edit Knowledge Base"](http://learn.wpeditpro.com/plugin-screenshots/) for screenshots.
 
 == Changelog ==
+
+= 1.8 =
+* Coming Soon!
+* Added font 'px' ability (Editor tab).
+* Updated TinyMCE core 'table' button (supports vertical align on table cells).
+* Fixed loading path of admin page .js and .css files, props ["@Fencer04"](http://wordpress.org/support/profile/fencer04).
 
 = 1.7 =
 
