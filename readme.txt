@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: wpedit, wp edit, editor, buttons, button, add, font, font style, font select, table, tables, visual editor, search, replace, colors, color, anchor, advance, advanced, links, link, popup, javascript, upgrade, update, admin, image, images, citations, preview, html, custom css, borders, pages, posts, pretty, colorful, php, php widget, shortcode, shortcodes, style, styles, plugin, login, excerpt, id, post, page, youtube, syntax, highlight, highlighter, image maps, tinymce
 Requires at least: 3.9
 Tested up to: 3.9
-Stable tag: 1.7
+Stable tag: 1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,7 +91,8 @@ Rather than bloat the plugin with screenshot images (they have to be stored in t
 == Changelog ==
 
 = 1.8 =
-* Coming Soon!
+
+* 05/03/2014
 * Added font 'px' ability (Editor tab).
 * Updated TinyMCE core 'table' button (supports vertical align on table cells).
 * Fixed loading path of admin page .js and .css files, props ["@Fencer04"](http://wordpress.org/support/profile/fencer04).

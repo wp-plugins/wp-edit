@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: http://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 1.7
+ * Version: 1.8
  * Author: Josh Lobe
  * Author URI: http://wpeditpro.com
  * License: GPL2
@@ -82,7 +82,8 @@ class wp_edit {
 					'editor_body_margin' => '10px',
 					'editor_text_direction' => 'ltr',
 					'editor_text_indent' => '0px',
-					'editor_bg_color' => 'FFFFFF'
+					'editor_bg_color' => 'FFFFFF',
+					'editor_tinymce_px' => '0'
 				);
 	public $global_options_fonts = array(
 					'enable_google_fonts' => '0',
@@ -218,7 +219,7 @@ class wp_edit {
 		wp_enqueue_script('jquery-ui-button');
 		wp_enqueue_script('wp-color-picker');
 		
-		wp_register_script( 'wp_edit_js', plugin_dir_url( __FILE__ ) . '/js/admin.js', array() ); // Main Admin Page Script File
+		wp_register_script( 'wp_edit_js', plugin_dir_url( __FILE__ ) . 'js/admin.js', array() ); // Main Admin Page Script File
 		wp_enqueue_script( 'wp_edit_js' );
 		
 		// Pass WP variables to main JS script
@@ -234,7 +235,7 @@ class wp_edit {
 		?><link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/<?php echo $select_theme; ?>/jquery-ui.css"><?php
 		?><link rel="stylesheet" href="<?php echo includes_url().'js/tinymce/skins/lightgray/skin.min.css' ?>"><?php
 		
-		wp_register_style('wp_edit_css', plugin_dir_url( __FILE__ ) . ('/css/admin.css'), array());  // css for admin panel presentation
+		wp_register_style('wp_edit_css', plugin_dir_url( __FILE__ ) . ('css/admin.css'), array());  // css for admin panel presentation
 		wp_enqueue_style('wp_edit_css');
 		wp_enqueue_style('dashicons');
 	}
@@ -481,6 +482,7 @@ class wp_edit {
 			$options_editor['editor_text_direction'] = isset($_POST['editor_text_direction']) ? $_POST['editor_text_direction'] : 'ltr';
 			$options_editor['editor_text_indent'] = isset($_POST['editor_text_indent']) ? $_POST['editor_text_indent'] : '0px';
 			$options_editor['editor_bg_color'] = isset($_POST['editor_bg_color']) ? $_POST['editor_bg_color'] : 'FFFFFF';
+			$options_editor['editor_tinymce_px'] = isset($_POST['editor_tinymce_px']) ? '1' : '0';
 			
 			update_option('wp_edit_editor', $options_editor);
 				
@@ -1553,6 +1555,7 @@ class wp_edit {
                 $editor_body_margin = isset($options_editor['editor_body_margin'])  ? $options_editor['editor_body_margin'] : '10px';
                 $editor_text_indent = isset($options_editor['editor_text_indent'])  ? $options_editor['editor_text_indent'] : '0px';
                 $editor_text_direction = isset($options_editor['editor_text_direction'])  ? $options_editor['editor_text_direction'] : 'ltr';
+				$editor_tinymce_px = isset($options_editor['editor_tinymce_px']) && $options_editor['editor_tinymce_px'] === '1' ? 'checked="checked"' : '';
 				
 				?>
                 <div id="block_container_editor">
@@ -1625,8 +1628,23 @@ class wp_edit {
                     </table>
                 </div>
                 <br /><br />
+                <input type="submit" value="<?php _e('Restore Settings', 'wp_edit_langs'); ?>" class="button button-secondary" id="restore_editor" name="restore_editor">
+                
+                <h3><?php _e('TinyMCE Options', 'wp_edit_langs'); ?></h3>
+                <p><?php _e('These options will adjust various parts of the TinyMCE initialization process.', 'wp_edit_langs'); ?></p>
+                
+                <table cellpadding="8">
+                <tbody>
+                <tr><td><?php _e('Change Font to "px"', 'wp_edit_langs'); ?></td>
+                    <td>
+                    <input id="editor_tinymce_px" type="checkbox" value="1" name="editor_tinymce_px" <?php echo $editor_tinymce_px; ?> />
+                    <label for="editor_tinymce_px"><?php _e('Switches the default font size in the dropdown list from "pt" to "px".', 'wp_edit_langs'); ?></label>
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+                <br /><br />
                 <input type="submit" value="<?php _e('Save Editor Options', 'wp_edit_langs'); ?>" class="button button-primary" id="submit_editor" name="submit_editor">
-                <input type="submit" value="<?php _e('Restore Settings', 'wp_edit_langs'); ?>" class="button button-primary" id="restore_editor" name="restore_editor">
                 </form>
                 <?php
             }
@@ -2506,11 +2524,26 @@ function wp_edit_tinymce_init_various_values($init) {
 	// Init table ability
 	$init['tools'] = 'inserttable';
 	
-	if(empty($init['fontsize_formats'])) {
-		$init['fontsize_formats'] = '6pt 8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 28pt 30pt 32pt 34pt 36pt 48pt 72pt';
+	// Init editor font px or pt
+	$opts_editor = get_option('wp_edit_editor');
+	$tinymce_px = (isset($opts_editor['editor_tinymce_px']) && $opts_editor['editor_tinymce_px'] === '1') ? '1' : '0';
+	if($tinymce_px === '1') {
+		$new_px = '6px 8px 9px 10px 11px 12px 13px 14px 15px 16px 18px 20px 22px 24px 28px 32px 48px 72px';
+		if(empty($init['fontsize_formats'])) {
+			$init['fontsize_formats'] = $new_px;
+		}
+		else {
+			$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_px;
+		}
 	}
 	else {
-		$init['fontsize_formats'] = $init['fontsize_formats'].' '.'6pt 16pt 20pt 22pt 26pt 28pt 30pt 32pt 34pt 48pt 72pt';
+		$new_pt = '6pt 8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 28pt 30pt 32pt 34pt 36pt 48pt 72pt';
+		if(empty($init['fontsize_formats'])) {
+			$init['fontsize_formats'] = $new_pt;
+		}
+		else {
+			$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_pt;
+		}
 	}
 	
 	return $init;
