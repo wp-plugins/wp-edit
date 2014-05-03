@@ -94,7 +94,7 @@ Rather than bloat the plugin with screenshot images (they have to be stored in t
 
 * 05/03/2014
 * Added font 'px' ability (Editor tab).
-* Updated TinyMCE core 'table' button (supports vertical align on table cells).
+* Updated TinyMCE core "table" button (supports vertical align on table cells).
 * Fixed loading path of admin page .js and .css files, props ["@Fencer04"](http://wordpress.org/support/profile/fencer04).
 
 = 1.7 =
