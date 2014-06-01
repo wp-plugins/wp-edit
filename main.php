@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: http://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 1.8
+ * Version: 1.9
  * Author: Josh Lobe
  * Author URI: http://wpeditpro.com
  * License: GPL2
@@ -83,7 +83,8 @@ class wp_edit {
 					'editor_text_direction' => 'ltr',
 					'editor_text_indent' => '0px',
 					'editor_bg_color' => 'FFFFFF',
-					'editor_tinymce_px' => '0'
+					'editor_tinymce_px' => '0',
+					'editor_add_pre_styles' => '0'
 				);
 	public $global_options_fonts = array(
 					'enable_google_fonts' => '0',
@@ -483,6 +484,7 @@ class wp_edit {
 			$options_editor['editor_text_indent'] = isset($_POST['editor_text_indent']) ? $_POST['editor_text_indent'] : '0px';
 			$options_editor['editor_bg_color'] = isset($_POST['editor_bg_color']) ? $_POST['editor_bg_color'] : 'FFFFFF';
 			$options_editor['editor_tinymce_px'] = isset($_POST['editor_tinymce_px']) ? '1' : '0';
+			$options_editor['editor_add_pre_styles'] = isset($_POST['editor_add_pre_styles']) ? '1' : '0';
 			
 			update_option('wp_edit_editor', $options_editor);
 				
@@ -939,7 +941,7 @@ class wp_edit {
                 <a href="?page=wp_edit_options&tab=posts" class="nav-tab <?php echo $active_tab == 'posts' ? 'nav-tab-active' : ''; ?>"><?php _e('Posts/Pages', 'wp_edit_langs'); ?></a>
                 <a href="?page=wp_edit_options&tab=editor" class="nav-tab <?php echo $active_tab == 'editor' ? 'nav-tab-active' : ''; ?>"><?php _e('Editor', 'wp_edit_langs'); ?></a>
                 <a href="?page=wp_edit_options&tab=fonts" class="nav-tab <?php echo $active_tab == 'fonts' ? 'nav-tab-active' : ''; ?>"><?php _e('Fonts', 'wp_edit_langs'); ?></a>
-                <a href="?page=wp_edit_options&tab=widgets" class="nav-tab <?php echo $active_tab == 'widgets' ? 'nav-tab-active' : ''; ?>"><?php _e('Widgets', 'wp_edit_langs'); ?></a>
+                <a href="?page=wp_edit_options&tab=widgets" class="nav-tab <?php echo $active_tab == 'widgets' ? 'nav-tab-active' : ''; ?>"><?php _e('Snidgets', 'wp_edit_langs'); ?></a>
                 <a href="?page=wp_edit_options&tab=user_specific" class="nav-tab <?php echo $active_tab == 'user_specific' ? 'nav-tab-active' : ''; ?>"><?php _e('User Specific', 'wp_edit_langs'); ?></a>
                 <a href="?page=wp_edit_options&tab=extras" class="nav-tab <?php echo $active_tab == 'extras' ? 'nav-tab-active' : ''; ?>"><?php _e('Extras', 'wp_edit_langs'); ?></a>
                 <a href="?page=wp_edit_options&tab=database" class="nav-tab <?php echo $active_tab == 'database' ? 'nav-tab-active' : ''; ?>"><?php _e('Database', 'wp_edit_langs'); ?></a>
@@ -1021,6 +1023,7 @@ class wp_edit {
 											if($icon === 'media') { $class = 'format-video'; $title = __('Media', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'rtl') { $class = ''; $title = __('Text Direction Right to Left', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'ltr') { $class = ''; $title = __('Text Direction Left to Right', 'wp_edit_langs'); $text = ''; }
+											if($icon === 'table') { $class = ''; $title = __('Tables', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'anchor') { $class = ''; $title = __('Anchor', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'code') { $class = ''; $title = __('HTML Code', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'emoticons') { $class = ''; $title = __('Emoticons', 'wp_edit_langs'); $text = ''; }
@@ -1067,7 +1070,7 @@ class wp_edit {
                 
                                 echo '<div style="margin-top:60px;"></div>';
                                 echo '<h3>';
-								_e('Icon Placeholder Container', 'wp_edit_langs');
+								_e('Button Placeholder Container', 'wp_edit_langs');
 								echo '</h3>';
                                 echo '<div id="tmce_container" class="ui-widget-content draggable_container sortable">';
                                 
@@ -1118,6 +1121,7 @@ class wp_edit {
 											if($icon === 'media') { $class = 'format-video'; $title = __('Media', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'rtl') { $class = ''; $title = __('Text Direction Right to Left', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'ltr') { $class = ''; $title = __('Text Direction Left to Right', 'wp_edit_langs'); $text = ''; }
+											if($icon === 'table') { $class = ''; $title = __('Tables', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'anchor') { $class = ''; $title = __('Anchor', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'code') { $class = ''; $title = __('HTML Code', 'wp_edit_langs'); $text = ''; }
 											if($icon === 'emoticons') { $class = ''; $title = __('Emoticons', 'wp_edit_langs'); $text = ''; }
@@ -1163,7 +1167,7 @@ class wp_edit {
                         _e('Buttons may also be sorted within Row 1.', 'wp_edit_langs');
 						echo '<br />';
                         _e('Each time a button is dropped, an ajax call is made which updates all rows. This feature can be disabled with the additional option.', 'wp_edit_langs');
-						echo '<br /><br />';
+						echo '<br />';
                         _e('Drag and Drop ability for all four rows of the editor is available in WP Edit Pro.', 'wp_edit_langs');
 						?>
                         </p>
@@ -1171,9 +1175,9 @@ class wp_edit {
                         <?php
                         echo '<div style="margin-top:20px;"></div>';
                         echo '<h3>';
-						_e('Icons available in Pro', 'wp_edit_langs');
+						_e('Buttons available in Pro', 'wp_edit_langs');
 						echo '</h3>';
-                        echo '<div id="tmce_container_pro" class="ui-widget-content draggable_container sortable">';
+                        echo '<div id="tmce_container_pro">';
 						
 							echo '<li id="acheck" class="icon_button dashicons dashicons-" title="Accessibility Checker"></li>';
 							echo '<li id="codemagic" class="icon_button dashicons dashicons-" title="Code Magic"></li>';
@@ -1186,6 +1190,7 @@ class wp_edit {
 							echo '<li id="mailto" class="icon_button dashicons dashicons-" title="MailTo Link"></li>';
 							echo '<li id="line_break_button" class="icon_button dashicons dashicons-" title="Line Break"></li>';
 							echo '<li id="p_tags_button" class="icon_button dashicons dashicons-" title="Paragraph Tag"></li>';
+							echo '<li id="advimage" class="icon_button dashicons dashicons-" title="Advanced Image"></li>';
                        
 						echo '</div>';
 						?>
@@ -1539,9 +1544,30 @@ class wp_edit {
             else if($active_tab == 'editor'){
 				
                 ?>
+                <form method="post" action="">
+                <h3><?php _e('Styles Options', 'wp_edit_langs'); ?></h3>
+                <p><?php _e('Adds predefined styles; which can be applied to editor content.', 'wp_edit_langs'); ?><br />
+                <?php _e('Please be sure the "Formats" button is active in the editor.', 'wp_edit_langs'); ?><br />
+				<em><?php _e('(More styles coming soon in the Pro version)', 'wp_edit_langs'); ?></em></p>
+                <?php
+                
+                $editor_add_pre_styles = isset($options_editor['editor_add_pre_styles']) && $options_editor['editor_add_pre_styles'] === '1' ? 'checked="checked"' : '';
+                
+				?>
+                <table cellpadding="8">
+                <tbody>
+                <tr><td><?php _e('Add Pre-defined Styles', 'wp_edit_langs'); ?></td>
+                    <td>
+                    <input id="editor_add_pre_styles" type="checkbox" value="1" name="editor_add_pre_styles" <?php echo $editor_add_pre_styles; ?> />
+                    <label for="editor_add_pre_styles"><?php _e('Adds predefined styles to the "Formats" dropdown button.', 'wp_edit_langs'); ?></label>
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+                
+                
                 <h3><?php _e('Editor Options', 'wp_edit_langs'); ?></h3>
                 <p><?php _e('These options will override the initial editor defaults, which will load the editor using the values below.', 'wp_edit_langs'); ?></p>
-                <form method="post" action="">
 				<?php
 				
 				$enable_editor = isset($options_editor['enable_editor']) && $options_editor['enable_editor'] === '1' ? 'checked="checked"' : '';
@@ -1565,7 +1591,7 @@ class wp_edit {
                     
                     <tr><td><?php _e('Enable Editor Settings', 'wp_edit_langs'); ?></td>
                         <td>
-                        <input id="enable_editor" type="checkbox" value="1" name="enable_editor" <?php echo $enable_editor; ?> />
+                        <input id="enable_editor" type="checkbox" value="0" name="enable_editor" <?php /*echo $enable_editor;*/ ?> />
                         <label for="enable_editor"><?php _e('Executes the values set below when initiating the content editor.', 'wp_edit_langs'); ?></label>
                         </td>
                     </tr>
@@ -1624,11 +1650,12 @@ class wp_edit {
                         <label for="editor_text_direction"><?php _e('Direction (ex. ltr)', 'wp_edit_langs'); ?></label>
                         </td>
                     </tr>
+                    <tr><td>
+                   		<input type="submit" value="<?php _e('Restore Settings', 'wp_edit_langs'); ?>" class="button button-secondary" id="restore_editor" name="restore_editor">
+                    </td></tr>
                     </tbody>
                     </table>
                 </div>
-                <br /><br />
-                <input type="submit" value="<?php _e('Restore Settings', 'wp_edit_langs'); ?>" class="button button-secondary" id="restore_editor" name="restore_editor">
                 
                 <h3><?php _e('TinyMCE Options', 'wp_edit_langs'); ?></h3>
                 <p><?php _e('These options will adjust various parts of the TinyMCE initialization process.', 'wp_edit_langs'); ?></p>
@@ -1801,8 +1828,8 @@ class wp_edit {
             else if($active_tab == 'widgets') {
 				
 				?>
-                <h3><?php _e('Widget Options', 'wp_edit_langs'); ?></h3>
-                <p><?php _e('These options specifically affect how widgets are handled.', 'wp_edit_langs'); ?></p>
+                <h3><?php _e('Snidget Options', 'wp_edit_langs'); ?></h3>
+                <p><?php _e('These options specifically affect how snidgets are handled.', 'wp_edit_langs'); ?></p>
                 
                 <form method="post" action="">
                     <div id="block_container_widgets">
@@ -1813,10 +1840,10 @@ class wp_edit {
                         
                         <table id="block_container_editor_table" cellpadding="8">
                         <tbody>
-                        <tr><td><?php _e('Widget Builder', 'wp_edit_langs'); ?></td>
+                        <tr><td><?php _e('Snidget Builder', 'wp_edit_langs'); ?></td>
                             <td>
                             <input id="widget_builder" type="checkbox" value="1" name="widget_builder" <?php echo $widget_builder; ?> />
-                            <label for="widget_builder"><?php _e('Enables the powerful widget builder.', 'wp_edit_langs'); ?></label>
+                            <label for="widget_builder"><?php _e('Enables the powerful snidget builder.', 'wp_edit_langs'); ?></label>
                             </td>
                         </tr>
                         </tbody>
@@ -2312,136 +2339,6 @@ $wp_edit = new wp_edit();
 
 
 
-
-/*
-**********************************
-Build post/page metabox
-**********************************
-*/
-$jwl_prefix = 'jwl_';  // Set prefix
-$jwl_meta_box = array(  // Build metabox
-	'id' => 'jwl-meta-box',
-	'title' => __('WP Edit', 'wp_edit_langs'),
-	'page' => 'post',
-	'context' => 'normal',
-	'priority' => 'high',
-	'fields' => array( // Set fields for saving
-		array(
-			'name' => __('Disable QR for this post/page:', 'wp_edit_langs'),
-			'id' => $jwl_prefix . 'qr_meta_checkbox',
-			'type' => 'checkbox',
-			'desc' => __('Disables QR only for this post/page.', 'wp_edit_langs')
-		),
-		array(
-			'name' => __('QR Title:', 'wp_edit_langs'),
-			'id' => $jwl_prefix . 'qr_meta_title',
-			'type' => 'input'
-		),
-		array(
-			'name' => __('QR Content:', 'wp_edit_langs'),
-			'id' => $jwl_prefix . 'qr_meta_content',
-			'type' => 'textarea'
-		)
-	)
-);
-// Add meta box
-function wp_edit_add_box() {
-	
-	global $jwl_meta_box;
-	add_meta_box($jwl_meta_box['id'], $jwl_meta_box['title'], 'wp_edit_show_box', $jwl_meta_box['page'], $jwl_meta_box['context'], $jwl_meta_box['priority']); // For Posts
-	add_meta_box($jwl_meta_box['id'], $jwl_meta_box['title'], 'wp_edit_show_box', 'page', $jwl_meta_box['context'], $jwl_meta_box['priority']); // For Pages
-}
-add_action('admin_menu', 'wp_edit_add_box');
-
-
-// Callback function to show fields in meta box
-function wp_edit_show_box() {
-	
-	global $jwl_meta_box, $post;
-	
-	// Use nonce for verification
-	echo '<input type="hidden" name="jwl_meta_box_nonce" value="', wp_create_nonce(basename(__FILE__)), '" /><h3>';
-	_e('QR Code Options:', 'wp_edit_langs');
-	echo '</h3><p>'.__('These options are post/page specific.', 'wp_edit_langs').'<br />';
-	echo __('They will override corresponding global options set on the admin WP Edit settings page.', 'wp_edit_langs').'</p>';
-	
-	
-	$options_qr = get_option('wp_edit_extras');
-	$options_qr = $options_qr['enable_qr'];
-	
-	if ($options_qr == '1') {
-		echo '<table class="form-table">';
-	} 
-	else {
-		echo '<table class="form-table" style="display:none;">';
-	}
-		
-	foreach ($jwl_meta_box['fields'] as $field) {
-		// get current post meta data
-		$meta = get_post_meta($post->ID, $field['id'], true);
-		echo '<tr>',
-				'<th style="width:20%"><label for="', $field['id'], '">', $field['name'], '</label></th>',
-				'<td>';
-				
-			switch ($field['type']) {
-				
-				case 'checkbox':
-					echo '<input type="checkbox" name="', $field['id'], '" id="', $field['id'], '"', $meta=='on' ? ' checked="checked"' : '', ' /> ' . $field['desc'];
-					break;
-				case 'input':
-					echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" />';
-					break;
-				case 'textarea':
-					echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="60" rows="4">'.$meta.'</textarea>';
-					break;
-			}
-		echo     '</td></tr>';
-	}
-	echo '</table>';
-	
-	if ($options_qr != '1') {
-		?><p style="color:#999999"><?php printf(__('Deactivated. If required, please activate via the <a href="%1$s">admin settings page</a>.', 'wp_edit_langs'), 'admin.php?page=wp_edit_options&tab=extras'); ?></p><?php 
-	}
-}
-// Save data from meta box
-add_action('save_post', 'wp_edit_save_data');
-function wp_edit_save_data($post_id) {
-	
-	global $jwl_meta_box;
-	// verify nonce
-	if (( !isset( $_POST['jwl_meta_box_nonce'] ) || !wp_verify_nonce($_POST['jwl_meta_box_nonce'], basename(__FILE__)))) {
-		return $post_id;
-	}
-	// check autosave
-	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-		return $post_id;
-	}
-	// check permissions
-	if ('page' == $_POST['post_type']) {
-		if (!current_user_can('edit_page', $post_id)) {
-			return $post_id;
-		}
-	} elseif (!current_user_can('edit_post', $post_id)) {
-		return $post_id;
-	}
-	
-	
-	foreach ($jwl_meta_box['fields'] as $field) {
-		
-		$old = get_post_meta($post_id, $field['id'], true);
-		$new = $_POST[$field['id']];
-		if ($new && $new != $old) {
-			update_post_meta($post_id, $field['id'], $new);
-		} elseif ('' == $new && $old) {
-			delete_post_meta($post_id, $field['id'], $old);
-		}
-	}
-	
-}
-
-
-
-
 /*
 ****************************************************************
 AJAX Call to update toolbar buttons
@@ -2527,6 +2424,7 @@ function wp_edit_tinymce_init_various_values($init) {
 	// Init editor font px or pt
 	$opts_editor = get_option('wp_edit_editor');
 	$tinymce_px = (isset($opts_editor['editor_tinymce_px']) && $opts_editor['editor_tinymce_px'] === '1') ? '1' : '0';
+	
 	if($tinymce_px === '1') {
 		$new_px = '6px 8px 9px 10px 11px 12px 13px 14px 15px 16px 18px 20px 22px 24px 28px 32px 48px 72px';
 		if(empty($init['fontsize_formats'])) {
@@ -2646,9 +2544,51 @@ $plugin_hook = "in_plugin_update_message-{$plugin_folder}/{$plugin_file}";
 add_action( $plugin_hook, 'wpedit_plugin_update_message_cb', 10, 2 ); // 10:priority, 2:arguments #
 function wpedit_plugin_update_message_cb( $plugin_data, $r ) {
 	
-    echo '<br />';
-	_e('Please signup to our free <a target="_blank" href="http://www.feedblitz.com/f/?Sub=950320">Feedblitz</a> service; to receive important plugin news and free offers.', 'wp_edit_langs');
+	$admin_email = get_option('admin_email');
+	
+    echo '<br /><br />';
+	echo '<div style="border:1px solid black;">';
+	
+		echo '<div style="width:30%;padding:10px;float:left;">';
+		echo '<h3>';
+		_e('Stay Informed', 'wp_edit_langs');
+		echo '</h3>';
+		_e('Please signup to our free <a target="_blank" href="http://www.feedblitz.com/f/?Sub=950320">Feedblitz</a> service; to receive important plugin news, updates and free offers.', 'wp_edit_langs');
+		echo '<br /><br />';
+		echo 'Enter your Email:<br /><input id="wpedit_feedblitz_signup_email" name="EMAIL" type="text" value="'.$admin_email.'" style="width:50%;" /><br><input id="wpedit_feedblitz_signup" type="button" value="Subscribe me! &raquo;" />';
+		echo '</div>';
+		
+		echo '<div style="width:30%;padding:10px;float:left;margin-left:20px;">';
+		echo '<h3>';
+		_e('Other Plugin News', 'wp_edit_langs');
+		echo '</h3>';
+		_e('* A stable version of WP Edit will soon be available on our <a target="_blank" href="http://wpeditpro.com">website</a>. The stable version will contain some options not available in the free version.', 'wp_edit_langs');
+		echo '<br /><br />';
+		_e('* Plugin documentation is being added to our <a target="_blank" href="http://learn.wpeditpro.com">Knowledge Base</a>. Check back frequently for more tutorial articles.', 'wp_edit_langs');
+		echo '</div>';
+		
+		echo '<div style="clear:both;"></div>';
+	echo '</div>';
 }
+
+function wpedit_pluginupdatecb_js() {
+	global $pagenow;
+	if($pagenow == 'plugins.php') {
+		
+		echo "<script language='javascript'>
+				jQuery(document).ready(function($) {
+					
+					$('#wpedit_feedblitz_signup').click(function() {
+						
+						feed_email = $('#wpedit_feedblitz_signup_email').val();
+						window.open('http://www.feedblitz.com/f/?Sub=950320&Email='+feed_email);
+					});
+				});
+			</script>";
+	}
+}
+add_action('admin_footer', 'wpedit_pluginupdatecb_js');
+
 
 
 /*
@@ -2663,6 +2603,13 @@ include( plugin_dir_path( __FILE__ ) . '/functions.php');
 Include functions for running user specific options
 ****************************************************************
 */
-include( plugin_dir_path( __FILE__ ) . '/user_functions.php');
+include( plugin_dir_path( __FILE__ ) . '/functions_user.php');
+
+/*
+****************************************************************
+Include functions for running predefined styles
+****************************************************************
+*/
+include( plugin_dir_path( __FILE__ ) . '/includes/style_formats.php');
 
 ?>

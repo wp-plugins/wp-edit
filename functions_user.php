@@ -211,7 +211,7 @@ function wp_edit_user_specific_init() {
 		add_action('wp_dashboard_setup', 'wp_edit_user_custom_dashboard_widgets');
 		function wp_edit_user_custom_dashboard_widgets() {
 			global $wp_meta_boxes;
-			wp_add_dashboard_widget('jwl_user_tinymce_dashboard_widget', __('WP Edit RSS Feed', 'wp_edit_langs'), 'wp_edit_user_tinymce_widget', 'wp_edit_user_configure_widget');
+			wp_add_dashboard_widget('jwl_user_tinymce_dashboard_widget', __('WP Edit Pro RSS Feed', 'wp_edit_langs'), 'wp_edit_user_tinymce_widget', 'wp_edit_user_configure_widget');
 		}	
 		function wp_edit_user_tinymce_widget() {
 			$jwl_widgets = get_option( 'wp_edit_user_dashboard_options' ); // Get the dashboard widget options
@@ -219,18 +219,19 @@ function wp_edit_user_specific_init() {
 			/* Check whether we have set the post count through the controls. If we didn't, set the default to 5 */
 			$jwl_total_items = isset( $jwl_widgets[$jwl_widget_id] ) && isset( $jwl_widgets[$jwl_widget_id]['items'] ) ? absint( $jwl_widgets[$jwl_widget_id]['items'] ) : 5;
 			// Echo the output of the RSS Feed.
+			echo '<p><a href="http://www.feedblitz.com/f/?Sub=950320"><img title="Subscribe to get updates by email and more!" border="0" src="http://assets.feedblitz.com/chicklets/email/i/25/950320.bmp"></a><br />News updates for WP Edit Pro and Stable versions.</p>';
 			echo '<p style="border-bottom:#000 1px solid;">Showing ('.$jwl_total_items.') Posts</p>';
 			echo '<div class="rss-widget">';
 				wp_widget_rss_output(array(
-					'url' => 'http://www.ultimatetinymcepro.com/feed/',
+					'url' => 'http://www.wpeditpro.com/feed/',
 					'title' => '',
 					'items' => $jwl_total_items,
-					'show_summary' => 0,
+					'show_summary' => 1,
 					'show_author' => 0,
-					'show_date' => 0
+					'show_date' => 1
 				));
 			echo "</div>";
-			echo '<p style="text-align:center;border-top: #000 1px solid;padding:5px;"><a href="http://www.ultimatetinymcepro.com/">Ultimate Tinymce Pro</a> - Visual Wordpress Editor</p>';
+			echo '<p style="text-align:center;border-top: #000 1px solid;padding:5px;"><a href="http://www.wpeditpro.com/">WP Edit Pro</a> - Visual Wordpress Editor</p>';
 		}
 		function wp_edit_user_configure_widget() {
 			$jwl_widget_id = 'jwl_user_tinymce_dashboard_widget'; // This must be the same ID we set in wp_add_dashboard_widget

@@ -1,10 +1,10 @@
 === WP Edit ===
 Contributors: josh401
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9E5VNRBMVBCS
-Tags: wpedit, wp edit, editor, buttons, button, add, font, font style, font select, table, tables, visual editor, search, replace, colors, color, anchor, advance, advanced, links, link, popup, javascript, upgrade, update, admin, image, images, citations, preview, html, custom css, borders, pages, posts, pretty, colorful, php, php widget, shortcode, shortcodes, style, styles, plugin, login, excerpt, id, post, page, youtube, syntax, highlight, highlighter, image maps, tinymce
+Tags: wpedit, wp edit, editor, buttons, button, add, font, font style, font select, table, tables, visual editor, search, replace, colors, color, anchor, advance, advanced, links, link, popup, javascript, upgrade, update, admin, image, images, citations, preview, html, custom css, borders, pages, posts, colorful, php, php widget, shortcode, shortcodes, style, styles, plugin, login, excerpt, id, post, page, youtube, tinymce
 Requires at least: 3.9
-Tested up to: 3.9
-Stable tag: 1.8
+Tested up to: 4.0
+Stable tag: 1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,7 @@ WP Edit will provide new buttons, additional options, and extended formatting ab
 
 * Easily insert images, media, YouTube videos, and clip art.
 * Create tables via a graphical interface.
+* Adjust table cell border and background colors.
 * No need to learn HTML and CSS (although the basics can certainly help); use buttons with visual interfaces instead!
 * Easily access all shortcodes available to your WordPress environment; and insert them into the content editor.
 * Use shortcodes to insert columns.. similar to "magazine" style layouts, in your content areas.
@@ -89,6 +90,14 @@ There is an option in WP Edit, under the "Database" tab, which will attempt to c
 Rather than bloat the plugin with screenshot images (they have to be stored in the plugin .zip file); please visit the ["WP Edit Knowledge Base"](http://learn.wpeditpro.com/plugin-screenshots/) for screenshots.
 
 == Changelog ==
+
+= 1.9 =
+
+* 06/01/2014
+* Added background color and border color to "table" button (table cell properties).
+* Fixed RSS widget feed.
+* Removed WP Edit metabox from "Edit Post" admin pages.
+* Added assortment of Predefined Styles (more styles coming soon in the Pro version) under the Editor tab.
 
 = 1.8 =
 
