@@ -2646,7 +2646,8 @@ $plugin_hook = "in_plugin_update_message-{$plugin_folder}/{$plugin_file}";
 add_action( $plugin_hook, 'wpedit_plugin_update_message_cb', 10, 2 ); // 10:priority, 2:arguments #
 function wpedit_plugin_update_message_cb( $plugin_data, $r ) {
 	
-    echo 'Hello World';
+    echo '<br />';
+	_e('Please signup to our free <a target="_blank" href="http://www.feedblitz.com/f/?Sub=950320">Feedblitz</a> service; to receive important plugin news and free offers.', 'wp_edit_langs');
 }
 
 
