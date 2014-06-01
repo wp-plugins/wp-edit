@@ -2635,6 +2635,20 @@ function wp_edit_add_mce($buttons) {
 
 
 
+/*
+****************************************************************
+Plugin Update Notice
+****************************************************************	
+*/
+$plugin_file   = basename( __FILE__ );
+$plugin_folder = basename( dirname( __FILE__ ) );
+$plugin_hook = "in_plugin_update_message-{$plugin_folder}/{$plugin_file}";
+add_action( $plugin_hook, 'your_update_message_cb', 10, 2 ); // 10:priority, 2:arguments #
+function wpedit_plugin_update_message_cb( $plugin_data, $r ) {
+	
+    echo 'Hello World';
+}
+
 
 /*
 ****************************************************************
