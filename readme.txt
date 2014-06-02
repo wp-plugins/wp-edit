@@ -17,6 +17,7 @@ Take complete control over the WordPress content editor.
 WP Edit is built around three years of custom WordPress development. WP Edit adds extensive, additional editing functionality to the default WordPress editor. Begin creating content like the pros; without knowing a single bit of HTML or CSS.
 
 ["Subscribe to our Feedblitz List"](http://www.feedblitz.com/f/?Sub=950320); and receive news, update notices and more.
+<a href="http://www.feedblitz.com/f/?Sub=950320"><img title="Subscribe to get updates by email and more!" border="0" src="http://assets.feedblitz.com/chicklets/email/i/25/950320.bmp"></a>
 
 = Most Powerful Features =
 WP Edit will provide new buttons, additional options, and extended formatting abilities to the exisiting content editor.
