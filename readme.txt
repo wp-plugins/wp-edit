@@ -3,8 +3,8 @@ Contributors: josh401
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9E5VNRBMVBCS
 Tags: wpedit, wp edit, editor, buttons, button, add, font, font style, font select, table, tables, visual editor, search, replace, colors, color, anchor, advance, advanced, links, link, popup, javascript, upgrade, update, admin, image, images, citations, preview, html, custom css, borders, pages, posts, colorful, php, php widget, shortcode, shortcodes, style, styles, plugin, login, excerpt, id, post, page, youtube, tinymce
 Requires at least: 3.9
-Tested up to: 4.0
-Stable tag: 1.9
+Tested up to: 4.1
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,9 @@ Because WP Edit is the culmination of three years development in the WordPress c
 * Powerful network installation functionality; WP Network Ready.
 * User roles for custom button arrangements; allow different user roles access to different editor buttons.
 * Extreme Custom Widget Builder - create custom widgets just like posts or pages.. and insert them into any widget area or the content editor.
+
+= Translations =
+* Spanish - Provided by Andrew Kurtis with ["WebHostingHub"](http://www.webhostinghub.com).
 
 = Notes =
 * This plugin is provided "as-is"; within the scope of WordPress.  We will update this plugin to remain secure, and to follow WP coding standards.
@@ -91,6 +94,15 @@ There is an option in WP Edit, under the "Database" tab, which will attempt to c
 Rather than bloat the plugin with screenshot images (they have to be stored in the plugin .zip file); please visit the ["WP Edit Knowledge Base"](http://learn.wpeditpro.com/plugin-screenshots/) for screenshots.
 
 == Changelog ==
+
+= 2.0 =
+
+* 06/27/2014
+* Fixed function naming conflict with Custom Styles.
+* Fixed Predefined Styles filter argument (may have clashed with other plugins adding custom style formats).
+* Added button to check for new buttons added to the drag and drop interface.
+* Added Accessibility Checker plugin button.
+* Added Spanish translation - Provided by Andrew Kurtis with ["WebHostingHub"](http://www.webhostinghub.com).
 
 = 1.9 =
 

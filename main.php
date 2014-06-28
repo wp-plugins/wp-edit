@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: http://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 1.9
+ * Version: 2.0
  * Author: Josh Lobe
  * Author URI: http://wpeditpro.com
  * License: GPL2
@@ -42,7 +42,7 @@ class wp_edit {
 					'toolbar2' => 'formatselect underline alignjustify forecolor pastetext removeformat charmap outdent indent undo redo wp_help', 
 					'toolbar3' => '', 
 					'toolbar4' => '',
-					'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig advlink'
+					'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig advlink acheck'
 				);
 	public $global_options_buttons_sidebars = array(
 					'add_opts' => array(
@@ -899,6 +899,83 @@ class wp_edit {
 			_e('Plugin settings have been successfully imported.' ,'wp_edit_langs');
 			echo '</p></div>';
 		}
+		
+		
+		
+		/*
+		****************************************************************
+		If Checking for new buttons
+		****************************************************************
+		*/	
+		if (isset($_POST['wpedit_check_new_buttons'])) {
+			
+			// Get active buttons from each toolbar and placeholder container
+			if($_POST['disabled_ajax_save']) {
+				
+				$active_buttons = $_POST['disabled_ajax_save'];  // get each button container value
+				$buttons = '';
+				
+				// Loop each container and extract buttons
+				foreach($active_buttons as $string) {
+					
+					if($string) {
+						list($part1, $part2) = explode('`', $string);  // split string at backtick
+						$buttons .= ' ' . $part2;  // the list of all active buttons (as string)
+					}
+				}
+			}
+			
+			// Get all buttons from initialization code (including any new buttons)
+			$options_buttons = $this->global_options_buttons;
+			$buttons_option = '';
+				
+			// Loop each container and extract buttons
+			foreach($options_buttons as $option) {
+				
+				$buttons_option .= ' ' . $option;  // the list of initializatio buttons (as string)
+			}
+			
+			// Explode strings to arrays for comparison
+			$buttons_array = explode(' ', $buttons);
+			$buttons_option_array = explode(' ', $buttons_option);
+			
+			// Check for differences in array
+			$array_diff = array_diff($buttons_option_array, $buttons_array);
+			
+			// Alert user
+			if(empty($array_diff)) {  // if no new buttons were discovered
+				
+				function wpedit_alert_user_no_new_buttons() {
+					
+					echo '<div id="message" class="updated"><p>';
+					_e('Check successful.  No new buttons were discovered.','');
+					echo '</p></div>';
+				}
+				add_action('admin_notices', 'wpedit_alert_user_no_new_buttons');
+			}
+			else {  // new buttons were discovered (array format)
+			
+				$db_buttons = get_option('wp_edit_buttons');
+				$db_placeholder = $db_buttons['tmce_container'];
+				
+				foreach ($array_diff as $new_button) {
+					
+					$db_placeholder = $db_placeholder . ' ' . $new_button;
+				}
+				
+				$db_buttons['tmce_container'] = $db_placeholder;
+				
+				update_option('wp_edit_buttons', $db_buttons);
+				
+				function wpedit_alert_user_new_buttons() {
+					
+					echo '<div id="message" class="updated"><p>';
+					_e('Check successful.  New buttons have been added to the "Icon Placeholder Container"');
+					echo '</p></div>';
+				}
+				add_action('admin_notices', 'wpedit_alert_user_new_buttons');
+			}
+		}
 	}
 	
 	
@@ -1000,7 +1077,6 @@ class wp_edit {
                                             if($icon === 'unlink') { $class = 'editor-unlink'; $title = __('Unlink', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'wp_more') { $class = 'editor-insertmore'; $title = __('More', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'fullscreen') { $class = 'editor-distractionfree'; $title = __('Distraction Free', 'wp_edit_langs'); $text = ''; }
-                                            //if($icon === 'wp_adv') { $class = 'editor-kitchensink ui-state-disabled ui-state-default_lock'; $title = 'Kitchen Sink'; $text = ''; }
                                             
                                             if($icon === 'formatselect') { $class = ''; $title = __('Format Select', 'wp_edit_langs'); $text = 'Paragraph'; }
                                             if($icon === 'underline') { $class = 'editor-underline'; $title = __('Underline', 'wp_edit_langs'); $text = ''; }
@@ -1049,6 +1125,7 @@ class wp_edit {
 											if($icon === 'acheck') { $class = ''; $title = __('Accessibility Checker', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'image_orig') { $class = 'format-image'; $title = __('Image', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'advlink') { $class = ''; $title = __('Insert/Edit Advanced Link', 'wp_edit_langs'); $text = ''; }
+                                            if($icon === 'acheck') { $class = ''; $title = __('Accessibility Check', 'wp_edit_langs'); $text = ''; }
 											
 											// Custom Buttons
                                             
@@ -1147,6 +1224,7 @@ class wp_edit {
 											if($icon === 'acheck') { $class = ''; $title = __('Accessibility Checker', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'image_orig') { $class = 'format-image'; $title = __('Image', 'wp_edit_langs'); $text = ''; }
                                             if($icon === 'advlink') { $class = ''; $title = __('Insert/Edit Advanced Link', 'wp_edit_langs'); $text = ''; }
+                                            if($icon === 'acheck') { $class = ''; $title = __('Accessibility Check', 'wp_edit_langs'); $text = ''; }
 										
 										// Custom Buttons
                                         
@@ -1159,7 +1237,7 @@ class wp_edit {
                             }
                         }
                         ?>
-                
+                		<p><input type="submit" class="button-secondary" id="wpedit_check_new_buttons" name="wpedit_check_new_buttons" value="Check for New Buttons" /></p>
                         <p>
                         <?php
                         _e('Buttons may be dragged to Row 1 (enabling them); or to the Placeholder Container (removing them from the editor).', 'wp_edit_langs');
@@ -1179,7 +1257,6 @@ class wp_edit {
 						echo '</h3>';
                         echo '<div id="tmce_container_pro">';
 						
-							echo '<li id="acheck" class="icon_button dashicons dashicons-" title="Accessibility Checker"></li>';
 							echo '<li id="codemagic" class="icon_button dashicons dashicons-" title="Code Magic"></li>';
 							echo '<li id="cleardiv" class="icon_button dashicons dashicons-" title="Clear Div"></li>';
 							echo '<li id="clker" class="icon_button dashicons dashicons-" title="Clker Images"></li>';
@@ -1191,6 +1268,8 @@ class wp_edit {
 							echo '<li id="line_break_button" class="icon_button dashicons dashicons-" title="Line Break"></li>';
 							echo '<li id="p_tags_button" class="icon_button dashicons dashicons-" title="Paragraph Tag"></li>';
 							echo '<li id="advimage" class="icon_button dashicons dashicons-" title="Advanced Image"></li>';
+							echo '<li id="googleImages" class="icon_button dashicons dashicons-" title="Google Images"></li>';
+							echo '<li id="formatPainter" class="icon_button dashicons dashicons-" title="Format Painter"></li>';
                        
 						echo '</div>';
 						?>
@@ -1920,7 +1999,7 @@ class wp_edit {
                 <tr><td><?php _e('Disable Dashboard Widget', 'wp_edit_langs'); ?></td>
                     <td>
                     <input id="dashboard_widget" type="checkbox" value="1" name="wp_edit_user_specific[dashboard_widget]" <?php echo $dashboard_widget; ?> />
-                    <label for="dashboard_widget"><?php _e('Disables Ultimate Tinymce Pro News Feed dashboard widget.', 'wp_edit_langs'); ?></label>
+                    <label for="dashboard_widget"><?php _e('Disables WP Edit Pro News Feed dashboard widget.', 'wp_edit_langs'); ?></label>
                     </td>
                 </tr>
                 </tbody>
@@ -2371,7 +2450,7 @@ function wp_edit_wp_ajax_callback() {
 			'toolbar2' => 'formatselect underline alignjustify forecolor pastetext removeformat charmap outdent indent undo redo wp_help', 
 			'toolbar3' => '', 
 			'toolbar4' => '',
-			'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig advlink'
+			'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig advlink acheck'
 		);
 		
 		update_option('wp_edit_buttons', $reset_buttons);
@@ -2481,6 +2560,7 @@ function wp_edit_mce_external_plugins($init) {
 	$init['visualblocks'] = plugins_url() . '/wp-edit/plugins/visualblocks/plugin.min.js';
 	$init['image_orig'] = plugins_url() . '/wp-edit/plugins/image_orig/plugin.min.js';
 	$init['advlink'] = plugins_url() . '/wp-edit/plugins/advlink/plugin.js';
+	$init['acheck'] = plugins_url() . '/wp-edit/plugins/acheck/plugin.js';
 	
 	return $init;
 }

@@ -36,6 +36,7 @@
 .draggable_container {
 	width: 87%;
 	min-height: 100px;
+	display: inline-block;
 	
 	-moz-box-shadow: 0 0 5px #888;
 	-webkit-box-shadow: 0 0 5px#888;
@@ -224,6 +225,12 @@ li.icon_button {
 }
 #advimage:before {
 	content: url('../plugins/custom_plugins/advimage.png');
+}
+#googleImages:before {
+	content: url('../plugins/custom_plugins/googleImages.png');
+}
+#formatPainter:before {
+	content: url('../plugins/custom_plugins/formatPainter.png');
 }
 
 

@@ -1,8 +1,8 @@
 <?php
 
 // Adds all the predefined styles to the editor
-add_filter( 'tiny_mce_before_init', 'my_mce_before_init' );
-function my_mce_before_init( $settings ) {
+add_filter( 'tiny_mce_before_init', 'wp_edit_style_formats_mce_before_init' );
+function wp_edit_style_formats_mce_before_init( $settings ) {
 
 	$style_formats = array(
 	
@@ -1056,13 +1056,17 @@ function my_mce_before_init( $settings ) {
 	$style_formats = isset($style_formats) ? $style_formats : array();
 	$style_formats_predefined = isset($style_formats_predefined) ? $style_formats_predefined : array();
 	
-	if(empty($settings['style_formats']) || $settings['style_formats'] = '') {
+	$isset_settings = isset($settings['style_formats']);
+	
+	if($isset_settings === false) {
 		
 		$settings['style_formats'] = json_encode(array_merge($style_formats, $style_formats_predefined));
 	}
 	else {
 		
-		$new_string = $settings['style_formats'].','.json_encode(array_merge($style_formats, $style_formats_predefined));
+		$json_decode_orig_settings = json_decode($settings['style_formats'], true);
+		
+		$new_string = json_encode(array_merge($json_decode_orig_settings, $style_formats_predefined));
 		$settings['style_formats'] = $new_string;
 	}
 	
