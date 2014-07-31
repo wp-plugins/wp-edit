@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: WP Edit
- * Plugin URI: http://wpeditpro.com
+ * Plugin URI: https://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 2.0
+ * Version: 2.1
  * Author: Josh Lobe
- * Author URI: http://wpeditpro.com
+ * Author URI: https://wpeditpro.com
  * License: GPL2
 */
 
@@ -18,6 +18,131 @@ add_action('plugins_loaded', 'wp_edit_load_translation');
 function wp_edit_load_translation() {
 	
  	load_plugin_textdomain( 'wp_edit_langs', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
+}
+
+/*
+****************************************************************
+Dismissable upgrade notice
+****************************************************************
+*/
+add_action('admin_init', 'wpedit_ug_notice');
+function wpedit_ug_notice() {
+	
+	// Define variables
+	global $pagenow;
+	global $current_user;
+	$userid = $current_user->ID;
+	
+	// Check if plugin install date is set in database
+	$opt_install = get_option('wp_edit_install');
+	if($opt_install === false) {
+		
+		// Set install date to today
+		update_option('wp_edit_install', date('Y-m-d'));
+	}
+	
+	// Compare install date with today
+	$date_install = isset($opt_install) ? $opt_install : date('Y-m-d');
+	
+	// If install date is more than 30 days old...
+	if(strtotime($date_install) < strtotime('-30 days')){
+		
+		// If we are only on plugins.php admin page...
+		if($pagenow === 'plugins.php') {
+			
+			// If the user clicked to dismiss notice...
+			if ( isset( $_GET['dismiss_wpedit_ug_notice'] ) && 'yes' == $_GET['dismiss_wpedit_ug_notice'] ) {
+				
+				// Update user meta
+				add_user_meta( $userid, 'ignore_wpedit_ag_notice', 'yes', true );
+			}
+			
+			// If user meta is not set...
+			if ( !get_user_meta( $userid, 'ignore_wpedit_ag_notice' ) ) {
+				
+				// Alert plugin update message
+				function wpeditpro_wordpress_version_notice() {
+					
+					global $pagenow;
+					
+					echo '<style type="text/css">';
+					echo '.wpedit_plugins_page_banner {
+						border: 1px solid #d4d4d4;
+						margin: 12px 0;
+						background: #FFF;
+						position: relative;
+						overflow: hidden
+					}
+					.wpedit_plugins_page_banner .text {
+						color: #000;
+						font-size: 15px;
+						line-height: 26px;
+						margin: 18px 18px 14px;
+						float: left;
+						width: auto;
+						max-width: 80%;
+					}
+					.wpedit_plugins_page_banner .text span {
+						font-size: 12px;
+						opacity: 0.7;
+					}
+					.wpedit_plugins_page_banner .button {
+						float: left;
+						border: none; 
+						font-size: 14px;
+						margin: 18px 0 18px 16px;
+						padding: 12px 0;
+						color: #FFF;
+						text-shadow: none;
+						font-weight: bold;
+						background: #0074A2;
+						-moz-border-radius: 3px;
+						border-radius: 3px;
+						-webkit-border-radius: 3px;
+						text-decoration: none;
+						height: 50px;
+						text-align: center;
+						text-transform: uppercase;
+						width: 147px;
+						box-shadow: none;
+						line-height: 26px;
+					}
+					.wpedit_plugins_page_banner .button:hover,
+					.wpedit_plugins_page_banner .button:focus {    
+						background: #222;
+						color: #FFF;
+					}
+					.wpedit_plugins_page_banner .icon {
+						float: right;
+						margin: 12px 8px 8px 0;
+					}
+					.wpedit_plugins_page_banner .close_icon {
+						float: right;
+						margin: 8px;
+						cursor: pointer;
+					}';
+					echo '</style>';
+					
+					echo '<div class="updated" style="padding: 0; margin: 0; border: none; background: none;">
+							<div class="wpedit_plugins_page_banner">
+								<a href="'.$pagenow.'?dismiss_wpedit_ug_notice=yes"><img class="close_icon" title="" src="'. plugins_url( 'images/close_banner.png', __FILE__ ) .'" alt=""/></a>
+								<div class="button_div">
+									<a class="button" target="_blank" href="https://wpeditpro.com">Learn More</a>				
+								</div>
+								<div class="text">
+									It\'s time to consider upgrading <strong>WP Edit</strong> to the <strong>PRO</strong> version.<br />
+									<span>Extend standard plugin functionality with new, enhanced options.</span>
+								</div>
+								<div class="icon">		
+									<img  title="" src="'.plugins_url( 'images/banner.png', __FILE__ ).'" alt=""/>
+								</div>	
+							</div>  
+						</div>';
+				}
+				add_action('admin_notices', 'wpeditpro_wordpress_version_notice');
+			}
+		}
+	}
 }
 
 
@@ -1295,7 +1420,7 @@ class wp_edit {
 								_e('PayPal Donation', 'wp_edit_langs');
 								echo '</a>.<br /><br />';
                                 _e('Alternatively, the purchase of the ', 'wp_edit_langs');
-								echo '<a target="_blank" href="http://wpeditpro.com">';
+								echo '<a target="_blank" href="https://wpeditpro.com">';
 								_e('PRO Version', 'wp_edit_langs');
 								echo '</a> ';
 								_e('offers additional features and extended functionality; while also supporting the developer.', 'wp_edit_langs');
@@ -2294,7 +2419,7 @@ class wp_edit {
 	public function plugin_settings_link($links) {
 		
 		$settings_link = '<a href="admin.php?page=wp_edit_options">Settings</a>';
-		$settings_link2 = '<a href="http://wpeditpro.com">Go Pro!</a>';
+		$settings_link2 = '<a href="https://wpeditpro.com">Go Pro!</a>';
   		array_push( $links, $settings_link, $settings_link2 );
   		return $links;
 	}
@@ -2642,7 +2767,7 @@ function wpedit_plugin_update_message_cb( $plugin_data, $r ) {
 		echo '<h3>';
 		_e('Other Plugin News', 'wp_edit_langs');
 		echo '</h3>';
-		_e('* A stable version of WP Edit will soon be available on our <a target="_blank" href="http://wpeditpro.com">website</a>. The stable version will contain some options not available in the free version.', 'wp_edit_langs');
+		_e('* A stable version of WP Edit will soon be available on our <a target="_blank" href="https://wpeditpro.com">website</a>. The stable version will contain some options not available in the free version.', 'wp_edit_langs');
 		echo '<br /><br />';
 		_e('* Plugin documentation is being added to our <a target="_blank" href="http://learn.wpeditpro.com">Knowledge Base</a>. Check back frequently for more tutorial articles.', 'wp_edit_langs');
 		echo '</div>';

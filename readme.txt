@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: wpedit, wp edit, editor, buttons, button, add, font, font style, font select, table, tables, visual editor, search, replace, colors, color, anchor, advance, advanced, links, link, popup, javascript, upgrade, update, admin, image, images, citations, preview, html, custom css, borders, pages, posts, colorful, php, php widget, shortcode, shortcodes, style, styles, plugin, login, excerpt, id, post, page, youtube, tinymce
 Requires at least: 3.9
 Tested up to: 4.1
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,12 @@ There is an option in WP Edit, under the "Database" tab, which will attempt to c
 Rather than bloat the plugin with screenshot images (they have to be stored in the plugin .zip file); please visit the ["WP Edit Knowledge Base"](http://learn.wpeditpro.com/plugin-screenshots/) for screenshots.
 
 == Changelog ==
+
+= 2.1 =
+
+* 07/30/2014
+* Adjusted Predefined Styles and added "style_formats_merge" argument.  This will prevent overwriting other plugin/theme styles, if present.
+* Updated Table plugin (provided my MoxieCode) to version 4.1.3.  This version includes background and border color selections for the entire table; table rows; and table cells.
 
 = 2.0 =
 

@@ -3,144 +3,6 @@
 // Adds all the predefined styles to the editor
 add_filter( 'tiny_mce_before_init', 'wp_edit_style_formats_mce_before_init' );
 function wp_edit_style_formats_mce_before_init( $settings ) {
-
-	$style_formats = array(
-	
-		//*************************************
-		// Original Tinymce/WP Values
-		//************************************/
-		
-		
-		// Default tinymce values
-		// Had to be custom written back into the initialization filter
-		// Perhaps there is a better menthod??  Maybe catching the value.. and appending to the end. 
-	
-		array(
-			'title' => 'Headers',
-			'items' => array( 
-			
-				array(
-					'title' => 'Header 1',
-					'format' => 'h1'
-				),
-				array(
-					'title' => 'Header 2',
-					'format' => 'h2'
-				),
-				array(
-					'title' => 'Header 3',
-					'format' => 'h3'
-				),
-				array(
-					'title' => 'Header 4',
-					'format' => 'h4'
-				),
-				array(
-					'title' => 'Header 5',
-					'format' => 'h5'
-				),
-				array(
-					'title' => 'Header 6',
-					'format' => 'h6'
-				)
-			)
-		),
-		
-		array(
-			'title' => 'Inline',
-			'items' => array( 
-			
-				array(
-					'title' => 'Bold',
-					'icon' => 'bold',
-					'format' => 'bold'
-				),
-				array(
-					'title' => 'Italic',
-					'icon' => 'italic',
-					'format' => 'italic'
-				),
-				array(
-					'title' => 'Underline',
-					'icon' => 'underline',
-					'format' => 'underline'
-				),
-				array(
-					'title' => 'Strikethrough',
-					'icon' => 'strikethrough',
-					'format' => 'strikethrough'
-				),
-				array(
-					'title' => 'Superscript',
-					'icon' => 'superscript',
-					'format' => 'superscript'
-				),
-				array(
-					'title' => 'Subscript',
-					'icon' => 'subscript',
-					'format' => 'subscript'
-				),
-				array(
-					'title' => 'Code',
-					'icon' => 'code',
-					'format' => 'code'
-				)
-			)
-		),
-		
-		array(
-			'title' => 'Blocks',
-			'items' => array( 
-			
-				array(
-					'title' => 'Paragraph',
-					'format' => 'p'
-				),
-				array(
-					'title' => 'Blockquote',
-					'format' => 'blockquote'
-				),
-				array(
-					'title' => 'Div',
-					'format' => 'div'
-				),
-				array(
-					'title' => 'Pre',
-					'format' => 'pre'
-				)
-			)
-		),
-		
-		array(
-			'title' => 'Alignment',
-			'items' => array( 
-			
-				array(
-					'title' => 'Left',
-					'icon' => 'alignleft',
-					'format' => 'alignleft'
-				),
-				array(
-					'title' => 'Center',
-					'icon' => 'aligncenter',
-					'format' => 'aligncenter'
-				),
-				array(
-					'title' => 'Right',
-					'icon' => 'alignright',
-					'format' => 'alignright'
-				),
-				array(
-					'title' => 'Justify',
-					'icon' => 'alignjustify',
-					'format' => 'alignjustify'
-				)
-			)
-		)
-	);
-	//*************************************
-	// END DEFAULT TINYMCE/WP STYLES
-	//************************************/
 	
 	
 	
@@ -1053,14 +915,13 @@ function wp_edit_style_formats_mce_before_init( $settings ) {
 	// FINALLY... let's put it all back together
 	//*********************************************/
 	// First we have to check for empty arrays (perhaps if user didn't enable a certain option)
-	$style_formats = isset($style_formats) ? $style_formats : array();
 	$style_formats_predefined = isset($style_formats_predefined) ? $style_formats_predefined : array();
 	
 	$isset_settings = isset($settings['style_formats']);
 	
 	if($isset_settings === false) {
 		
-		$settings['style_formats'] = json_encode(array_merge($style_formats, $style_formats_predefined));
+		$settings['style_formats'] = json_encode($style_formats_predefined);
 	}
 	else {
 		
@@ -1069,6 +930,9 @@ function wp_edit_style_formats_mce_before_init( $settings ) {
 		$new_string = json_encode(array_merge($json_decode_orig_settings, $style_formats_predefined));
 		$settings['style_formats'] = $new_string;
 	}
+	
+	// Merge new styles to original styles
+	$settings['style_formats_merge'] = true;
 	
 	return $settings;
 }
