@@ -223,10 +223,9 @@ function wp_edit_user_specific_init() {
 			echo '<p style="border-bottom:#000 1px solid;">Showing ('.$jwl_total_items.') Posts</p>';
 			echo '<div class="rss-widget">';
 				wp_widget_rss_output(array(
-					'url' => 'http://www.wpeditpro.com/feed/',
+					'url' => 'http://feeds.feedblitz.com/wpeditpro&x=1',
 					'title' => '',
 					'items' => $jwl_total_items,
-					'show_summary' => 1,
 					'show_author' => 0,
 					'show_date' => 1
 				));
