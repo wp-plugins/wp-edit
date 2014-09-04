@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: wpedit, wp edit, editor, buttons, button, add, font, font style, font select, table, tables, visual editor, search, replace, colors, color, anchor, advance, advanced, links, link, popup, javascript, upgrade, update, admin, image, images, citations, preview, html, custom css, borders, pages, posts, colorful, php, php widget, shortcode, shortcodes, style, styles, plugin, login, excerpt, id, post, page, youtube, tinymce
 Requires at least: 3.9
 Tested up to: 4.1
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,14 @@ There is an option in WP Edit, under the "Database" tab, which will attempt to c
 Rather than bloat the plugin with screenshot images (they have to be stored in the plugin .zip file); please visit the ["WP Edit Knowledge Base"](http://learn.wpeditpro.com/plugin-screenshots/) for screenshots.
 
 == Changelog ==
+
+= 2.3 =
+
+* 09/04/2014
+* Updated "Table" and "Colorpicker" buttons to TinyMCE 4.1.4 versions.
+* Removed "Save Editor Scrollbar" option (not needed after WP 4.0).
+* Fixed "foreach" error in php log.
+
 
 = 2.2 =
 

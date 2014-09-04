@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: https://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 2.2
+ * Version: 2.3
  * Author: Josh Lobe
  * Author URI: https://wpeditpro.com
  * License: GPL2
@@ -220,7 +220,6 @@ class wp_edit {
 					'widget_builder' => '0',
 				);
 	public $global_options_user_specific = array(
-					'save_scrollbar' => '0',
 					'id_column' => '0',
 					'thumbnail_column' => '0',
 					'hide_text_tab' => '0',
@@ -399,7 +398,6 @@ class wp_edit {
 			// If User Specific was submitted
 			$post_vars = isset($_POST['wp_edit_user_specific']) ? $_POST['wp_edit_user_specific'] : '';
 			
-			$options_user_specific_user_meta['save_scrollbar'] = isset($post_vars['save_scrollbar']) ? '1' : '0';
 			$options_user_specific_user_meta['id_column'] = isset($post_vars['id_column']) ? '1' : '0';
 			$options_user_specific_user_meta['thumbnail_column'] = isset($post_vars['thumbnail_column']) ? '1' : '0';
 			$options_user_specific_user_meta['hide_text_tab'] = isset($post_vars['hide_text_tab']) ? '1' : '0';
@@ -812,7 +810,6 @@ class wp_edit {
 			if(isset($get_utmce3['jwl_autop_field_id'])) { $count_posts_pages++; }
 			
 			// Build 'WP Edit -> User Specific' options
-			$opt_save_scrollbar = isset($get_utmce3['jwl_cursor_field_id']) ? '1' : '0';
 			$opt_id_column = isset($get_utmce3['jwl_postid_field_id']) ? '1' : '0';
 			$opt_hide_text_tab = isset($get_utmce4['jwl_hide_html_tab']) ? '1' : '0';
 			$opt_disable_dashboard_widget = isset($get_utmce4['jwl_dashboard_widget']) ? '0' : '1';
@@ -880,7 +877,6 @@ class wp_edit {
 			global $current_user;  // Get current user
 			update_user_meta($current_user->ID, 'aaa_wp_edit_user_meta', array(
 				
-				'save_scrollbar' => $opt_save_scrollbar,
 				'id_column' => $opt_id_column,
 				'thumbnail_column' => '0',
 				'hide_text_tab' => $opt_hide_text_tab,
@@ -2073,7 +2069,6 @@ class wp_edit {
                 <form method="post" action="">
                 
                 <?php
-                $save_scrollbar = isset($options_user_meta['save_scrollbar']) && $options_user_meta['save_scrollbar'] === '1' ? 'checked="checked"' : '';
                 $id_column = isset($options_user_meta['id_column']) && $options_user_meta['id_column'] === '1' ? 'checked="checked"' : '';
                 $thumbnail_column = isset($options_user_meta['thumbnail_column']) && $options_user_meta['thumbnail_column'] === '1' ? 'checked="checked"' : '';
                 $hide_text_tab = isset($options_user_meta['hide_text_tab']) && $options_user_meta['hide_text_tab'] === '1' ? 'checked="checked"' : '';
@@ -2091,12 +2086,6 @@ class wp_edit {
                 
                 <table cellpadding="8">
                 <tbody>
-                <tr><td><?php _e('Save Scrollbar', 'wp_edit_langs'); ?></td>
-                    <td>
-                    <input id="save_scrollbar" type="checkbox" value="1" name="wp_edit_user_specific[save_scrollbar]" <?php echo $save_scrollbar; ?> />
-                    <label for="save_scrollbar"><?php _e('Saves the editor srollbar position when editing long posts (TEXT mode).', 'wp_edit_langs'); ?></label>
-                    </td>
-                </tr>
                 <tr><td><?php _e('ID Column', 'wp_edit_langs'); ?></td>
                     <td>
                     <input id="id_column" type="checkbox" value="1" name="wp_edit_user_specific[id_column]" <?php echo $id_column; ?> />
@@ -2660,7 +2649,7 @@ function wp_edit_init_tinymce() {
 	
 	// Get options and set appropriate tinymce toolbars
 	$options_buttons = get_option('wp_edit_buttons');
-	foreach ($options_buttons as $key => $value) {
+	foreach ((array)$options_buttons as $key => $value) {
 		
 		// Magic is happening right here...
 		if($key == 'tmce_container') { return; }
