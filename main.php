@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: https://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 2.3
+ * Version: 2.4
  * Author: Josh Lobe
  * Author URI: https://wpeditpro.com
  * License: GPL2
@@ -1166,7 +1166,7 @@ class wp_edit {
                         <?php
                         foreach ($options_buttons as $toolbar => $icons) {
 							
-							if($toolbar === 'toolbar2') {
+							if($toolbar === 'toolbar3') {
 								echo '<div class="block_tinymce_toolbars" style="width:87%;">';
 							}
                         
@@ -1361,12 +1361,12 @@ class wp_edit {
                 		<p><input type="submit" class="button-secondary" id="wpedit_check_new_buttons" name="wpedit_check_new_buttons" value="Check for New Buttons" /></p>
                         <p>
                         <?php
-                        _e('Buttons may be dragged to Row 1 (enabling them); or to the Placeholder Container (removing them from the editor).', 'wp_edit_langs');
+                        _e('Buttons may be dragged to Rows 1 and 2(enabling them); or to the Placeholder Container (removing them from the editor).', 'wp_edit_langs');
 						echo '<br />';
-                        _e('Buttons may also be sorted within Row 1.', 'wp_edit_langs');
+                        _e('Buttons may also be sorted within Rows 1 and 2.', 'wp_edit_langs');
 						echo '<br />';
                         _e('Each time a button is dropped, an ajax call is made which updates all rows. This feature can be disabled with the additional option.', 'wp_edit_langs');
-						echo '<br />';
+						echo '<br /><br />';
                         _e('Drag and Drop ability for all four rows of the editor is available in WP Edit Pro.', 'wp_edit_langs');
 						?>
                         </p>
@@ -2654,6 +2654,7 @@ function wp_edit_init_tinymce() {
 		// Magic is happening right here...
 		if($key == 'tmce_container') { return; }
 		if($key == 'toolbar1') { add_filter( 'mce_buttons', 'wp_edit_add_mce' ); }
+		if($key == 'toolbar2') { add_filter( 'mce_buttons_2', 'wp_edit_add_mce_2' ); }
 	}
 }
 add_action('init', 'wp_edit_init_tinymce');
@@ -2721,6 +2722,38 @@ function wp_edit_add_mce($buttons) {
 	
 	// Merge the difference onto the end of our saved buttons
 	$merge_buttons = array_merge($options_toolbar1, $array_back);
+	
+	return $merge_buttons;
+}
+function wp_edit_add_mce_2($buttons) {
+	
+	$options = get_option('wp_edit_buttons');
+	$options_toolbar2 = $options['toolbar2'];
+	$default_wp_array_toolbar2 = array('formatselect','underline','alignjustify','forecolor','pastetext','removeformat','charmap','outdent','indent','undo','redo','wp_help');
+	$array_back = array();
+	
+	// First, we explode the toolbar in the database
+	$options_toolbar2 = explode(' ', $options_toolbar2);
+	
+	// Next, we get the difference between ($options['toolbar1']) and ($buttons)
+	$array_diff = array_diff($buttons, $options_toolbar2);
+	
+	// Now, we take the array and loop it to find original buttons
+	if($array_diff) {
+		
+		foreach($array_diff as $array) {
+			
+			// If the button is NOT in the original array (WP buttons), we know it is another plugin or theme button..
+			if(!in_array($array, $default_wp_array_toolbar2)) {
+				
+				// Create the new array of additional buttons to pass back to end of toolbar
+				$array_back[] = $array;
+			}
+		}
+	}
+	
+	// Merge the difference onto the end of our saved buttons
+	$merge_buttons = array_merge($options_toolbar2, $array_back);
 	
 	return $merge_buttons;
 }

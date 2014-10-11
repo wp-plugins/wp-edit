@@ -142,7 +142,7 @@ jQuery(document).ready(function($) {
 	});
 	
 	// Remove droppable on rows 3 and 4
-	$('#toolbar2, #toolbar3, #toolbar4').removeClass('droppable').addClass('droppable_rows2_3_4');
+	$('#toolbar3, #toolbar4').removeClass('droppable').addClass('droppable_rows2_3_4');
 
 
 	

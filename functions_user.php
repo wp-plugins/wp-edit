@@ -32,34 +32,36 @@ function wp_edit_user_specific_init() {
 	// Add Tumbnail Column
 	if(isset($opts_user_meta['thumbnail_column']) && $opts_user_meta['thumbnail_column'] === '1') {
 		
-		if ( !function_exists('wp_edit_AddThumbColumn') && function_exists('add_theme_support') ) {  
-		// for post and page  
-		add_theme_support('post-thumbnails', array( 'post', 'page' ) );  
-		function wp_edit_AddThumbColumn($cols) {  
-			$cols['thumbnail'] = __('Thumbnail', 'wp_edit_langs');  
-			return $cols;  
-		}  
+		if ( !function_exists('wp_edit_AddThumbColumn') && function_exists('add_theme_support') ) {
+			
+			
+			// First, check if current theme support post thumbnails
+			function wpep_check_post_thumbnails() {
+				
+				// If current theme does not support post thumbnails
+				if(!current_theme_supports('post-thumbnails')) {
+					
+					// Add post thumbnail support
+					add_theme_support('post-thumbnails', array( 'post', 'page' ) );
+				}
+			}
+			add_action('after_theme_setup', 'wpep_check_post_thumbnails');
+			 
+			function wp_edit_AddThumbColumn($cols) {
+				  
+				$cols['thumbnail'] = __('Thumbnail', 'wp_edit_langs');  
+				return $cols;  
+			}  
 		  
 		function wp_edit_AddThumbValue($column_name, $post_id) {  
-			$width = (int) 35;  
-			$height = (int) 35;  
-			if ( 'thumbnail' == $column_name ) {  
-				// thumbnail of WP 2.9  
-				$thumbnail_id = get_post_meta( $post_id, '_thumbnail_id', true );  
+		 
+			if ( 'thumbnail' == $column_name ) {
 				  
-				// image from gallery  
-				$attachments = get_children( array('post_parent' => $post_id, 'post_type' => 'attachment', 'post_mime_type' => 'image') );  
+				$thumb = get_the_post_thumbnail($post_id, array(100,70));
 				  
-				if ($thumbnail_id)  
-					$thumb = wp_get_attachment_image( $thumbnail_id, array($width, $height), true );  
-				elseif ($attachments) {  
-					foreach ( $attachments as $attachment_id => $attachment ) {  
-					$thumb = wp_get_attachment_image( $attachment_id, array($width, $height), true );  
-				}  
-			}  
-			if ( isset($thumb) && $thumb ) { echo $thumb; }  
-			else { echo __('None', 'wp_edit_langs'); }  
-			}  
+				if ( isset($thumb) && $thumb ) { echo $thumb; }
+				else { echo __('None','wpeditpro_localization'); }
+			}
 		}  
 		  
 		// for posts  
