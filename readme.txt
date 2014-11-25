@@ -12,6 +12,9 @@ Take complete control over the WordPress content editor.
 
 == Description ==
 
+= Introduction =
+For a riveting introduction into the possibilities available with WP Edit; please visit [Jupiter Jim's Marketing Team Article](http://jupiterjimsmarketingteam.com/wordpress-video-tutorials/change-font-size-family-wordpress/).
+
 = Description =
 
 WP Edit is built around three years of custom WordPress development. WP Edit adds extensive, additional editing functionality to the default WordPress editor. Begin creating content like the pros; without knowing a single bit of HTML or CSS.
