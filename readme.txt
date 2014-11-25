@@ -13,7 +13,7 @@ Take complete control over the WordPress content editor.
 == Description ==
 
 = Introduction =
-For a riveting introduction into the possibilities available with WP Edit; please visit [Jupiter Jim's Marketing Team Article](http://jupiterjimsmarketingteam.com/wordpress-video-tutorials/change-font-size-family-wordpress/).
+For a riveting video introduction into the possibilities available with WP Edit; please visit [Jupiter Jim's Marketing Team](http://jupiterjimsmarketingteam.com/wordpress-video-tutorials/change-font-size-family-wordpress/).
 
 = Description =
 
