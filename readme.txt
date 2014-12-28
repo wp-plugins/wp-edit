@@ -3,8 +3,8 @@ Contributors: josh401
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9E5VNRBMVBCS
 Tags: wpedit, wp edit, editor, buttons, button, add, font, font style, font select, table, tables, visual editor, search, replace, colors, color, anchor, advance, advanced, links, link, popup, javascript, upgrade, update, admin, image, images, citations, preview, html, custom css, borders, pages, posts, colorful, php, php widget, shortcode, shortcodes, style, styles, plugin, login, excerpt, id, post, page, youtube, tinymce
 Requires at least: 3.9
-Tested up to: 4.1
-Stable tag: 2.4
+Tested up to: 4.3
+Stable tag: 3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,15 +88,27 @@ OR...
 
 == Frequently asked questions ==
 
-= How do I get my options from Ultimate Tinymce converted to WP Edit? =
-
-There is an option in WP Edit, under the "Database" tab, which will attempt to convert any options in the database to WP Edit.
 
 == Screenshots ==
 
-Rather than bloat the plugin with screenshot images (they have to be stored in the plugin .zip file); please visit the ["WP Edit Knowledge Base"](http://learn.wpeditpro.com/plugin-screenshots/) for screenshots.
+1. Create custom button arrangements from a friendly drag and drop interface.
+2. The custom button arrangement will be loaded in the content editor.
+3. Eight tabs packed with options.
 
 == Changelog ==
+
+= 3.0 =
+
+* 12/28/2014
+* Many code optimizations.
+* New drag and drop interface code (bug fixes).
+* New admin styling.
+* Buttons can now be "multi-selected"; and moved as a group.
+* Updated the "disable wpautop" functionality.
+* Added "Column Shortcodes" button for easily inserting column shortcodes.
+* Added "Abbreviation" button for inserting abbreviations into content area.
+* Added fancy tooltips to buttons (adds additional button info on hover).
+* Added functions to check if new buttons have been added; or old buttons have been removed (click "Save Buttons" to check).
 
 = 2.4 =
 
