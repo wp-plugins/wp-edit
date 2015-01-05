@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: https://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 3.0
+ * Version: 3.0.1
  * Author: Josh Lobe
  * Author URI: https://wpeditpro.com
  * License: GPL2
@@ -1972,15 +1972,15 @@ class wp_edit_class {
 	
 			$options_posts = get_option('wp_edit_posts');
 			
-			$options_posts['post_title_field'] = isset($_POST['post_title_field']) ? $_POST['post_title_field'] : 'Enter title here';
+			$options_posts['post_title_field'] = isset($_POST['post_title_field']) ? sanitize_text_field($_POST['post_title_field']) : 'Enter title here';
 			$options_posts['column_shortcodes'] = isset($_POST['column_shortcodes']) ? '1' : '0';
 			$options_posts['disable_wpautop'] = isset($_POST['disable_wpautop']) ? '1' : '0';
 			
-			$options_posts['max_post_revisions'] = isset($_POST['max_post_revisions']) ? $_POST['max_post_revisions'] : '';
-			$options_posts['max_page_revisions'] = isset($_POST['max_page_revisions']) ? $_POST['max_page_revisions'] : '';
+			$options_posts['max_post_revisions'] = isset($_POST['max_post_revisions']) ? sanitize_text_field($_POST['max_post_revisions']) : '';
+			$options_posts['max_page_revisions'] = isset($_POST['max_page_revisions']) ? sanitize_text_field($_POST['max_page_revisions']) : '';
 			
-			$options_posts['hide_admin_posts'] = isset($_POST['hide_admin_posts']) ? $_POST['hide_admin_posts'] : '';
-			$options_posts['hide_admin_pages'] = isset($_POST['hide_admin_pages']) ? $_POST['hide_admin_pages'] : '';
+			$options_posts['hide_admin_posts'] = isset($_POST['hide_admin_posts']) ? sanitize_text_field($_POST['hide_admin_posts']) : '';
+			$options_posts['hide_admin_pages'] = isset($_POST['hide_admin_pages']) ? sanitize_text_field($_POST['hide_admin_pages']) : '';
 			
 			update_option('wp_edit_posts', $options_posts);
 			
