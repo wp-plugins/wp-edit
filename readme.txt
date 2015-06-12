@@ -4,13 +4,15 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: wpedit, wp edit, editor, buttons, button, add, font, font style, font select, table, tables, visual editor, search, replace, colors, color, anchor, advance, advanced, links, link, popup, javascript, upgrade, update, admin, image, images, citations, preview, html, custom css, borders, pages, posts, colorful, php, php widget, shortcode, shortcodes, style, styles, plugin, login, excerpt, id, post, page, youtube, tinymce
 Requires at least: 3.9
 Tested up to: 4.2 Alpha
-Stable tag: 3.1
+Stable tag: 3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Take complete control over the WordPress content editor.
 
 == Description ==
+
+[youtube http://www.youtube.com/watch?v=N-VAnsK9A-Q]
 
 = Introduction =
 For a riveting video introduction into the possibilities available with WP Edit; please visit [Jupiter Jim's Marketing Team](http://jupiterjimsmarketingteam.com/wordpress-video-tutorials/change-font-size-family-wordpress/).
@@ -96,6 +98,13 @@ OR...
 3. Eight tabs packed with options.
 
 == Changelog ==
+
+= 3.2 =
+
+* 06/12/15
+* Fixed issue with OptimizePress theme.
+* Added "title" attribute to "Insert/Edit Advanced Link" button.
+* Made minor changes to plugin update message and styling.
 
 = 3.1 =
 

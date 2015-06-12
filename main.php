@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: https://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 3.1
+ * Version: 3.2
  * Author: Josh Lobe
  * Author URI: https://wpeditpro.com
  * License: GPL2
@@ -1616,11 +1616,13 @@ class wp_edit_class {
                         <div class="inside">
                         
                             <p><?php _e('Upgrade to WP Edit Pro today; and enjoy additional options such as:', 'wp_edit_langs'); ?></p>
-                            <ul>
-                                <li><span class="dashicons dashicons-yes"></span><?php _e('4 customizable buttons rows instead of only 2.', 'wp_edit_langs'); ?></li>
-                                <li><span class="dashicons dashicons-yes"></span><?php _e('Over a dozen additional editor buttons.', 'wp_edit_langs'); ?></li>
-                                <li><span class="dashicons dashicons-yes"></span><?php _e('More control and flexibility.', 'wp_edit_langs'); ?></li>
-                                <li><span class="dashicons dashicons-yes"></span><?php _e('Create multiple button arrangements and assign them to individual users.', 'wp_edit_langs'); ?></li>
+                            <ul class="wpep_pro_upgrade_list">
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('4 customizable button rows instead of only 2.', 'wp_edit_langs'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Create multiple button arrangements.', 'wp_edit_langs'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Limit users over what buttons they can access.', 'wp_edit_langs'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Powerful "Snidget" Builder.', 'wp_edit_langs'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Over 30 additional options and settings.', 'wp_edit_langs'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Over a dozen additional editor buttons (Image maps, YouTube Videos, and many more!).', 'wp_edit_langs'); ?></li>
                             </ul>
                             <a href="https://wpeditpro.com" target="_blank" class="button-primary"><?php _e('WP Edit Pro', 'wp_edit_langs'); ?></a>
                         </div>
@@ -2308,7 +2310,11 @@ class wp_edit_class {
 	public function wp_edit_tiny_mce_before_init($init) {
 		
 		// Initialize table ability
-		$init['tools'] = 'inserttable';
+		if (isset($init['tools'])) {
+			$init['tools'] = $init['tools'].',inserttable';
+		} else {
+			$init['tools'] = 'inserttable';
+		}
 		
 		// Get editor default fontsize type value
 		$opts_editor = get_option('wp_edit_editor');
@@ -2318,22 +2324,42 @@ class wp_edit_class {
 		if($default_editor_fontsize_type === 'px') {
 			
 			$new_px = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '6px 8px 9px 10px 11px 12px 13px 14px 15px 16px 18px 20px 22px 24px 28px 32px 48px 72px';
-			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_px : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_px;
+			
+			if(isset($init['fontsize_formats'])) {
+				$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_px;
+			} else {
+				$init['fontsize_formats'] = $new_px;
+			}
 		}
 		else if($default_editor_fontsize_type === 'pt') {
 			
 			$new_pt = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '6pt 8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 28pt 30pt 32pt 34pt 36pt 48pt 72pt';
-			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_pt : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_pt;
+			
+			if(isset($init['fontsize_formats'])) {
+				$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_pt;
+			} else {
+				$init['fontsize_formats'] = $new_pt;
+			}
 		}
 		else if($default_editor_fontsize_type === 'em') {
 			
 			$new_em = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '.8em 1em 1.2em 1.4em 1.6em 1.8em 2em';
-			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_em : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_em;
+			
+			if(isset($init['fontsize_formats'])) {
+				$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_em;
+			} else {
+				$init['fontsize_formats'] = $new_em;
+			} 
 		}
 		else if($default_editor_fontsize_type === 'percent') {
 			
 			$new_percent = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '80% 90% 100% 110% 120%';
-			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_percent : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_percent;
+			
+			if(isset($init['fontsize_formats'])) {
+				$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_percent;
+			} else {
+				$init['fontsize_formats'] = $new_percent;
+			}
 		}
 		
 		/*
@@ -2559,24 +2585,18 @@ class wp_edit_class {
 		$admin_email = get_option('admin_email');
 		
 		echo '<br /><br />';
-		echo '<div style="border:1px solid black;">';
+		echo '<div style="border:1px solid black;border-radius:10px;">';
 		
 			echo '<div style="width:30%;padding:10px;float:left;">';
-			echo '<h3>';
-			_e('Stay Informed', 'wp_edit_langs');
-			echo '</h3>';
-			_e('Please signup to our free <a target="_blank" href="http://www.feedblitz.com/f/?Sub=950320">Feedblitz</a> service; to receive important plugin news, updates and free offers.', 'wp_edit_langs');
-			echo '<br /><br />';
-			echo 'Enter your Email:<br /><input id="wpedit_feedblitz_signup_email" name="EMAIL" type="text" value="'.$admin_email.'" style="width:50%;" /><br><input id="wpedit_feedblitz_signup" type="button" value="Subscribe me! &raquo;" />';
+				echo '<h3>'; _e('Stay Informed', 'wp_edit_langs'); echo '</h3>';
+				_e('Signup to our free <a target="_blank" href="http://www.feedblitz.com/f/?Sub=950320">Feedblitz</a> service; to receive important plugin news, updates and discount offers for our Pro version.', 'wp_edit_langs');
+				echo '<br /><br />';
+				echo 'Email:<br /><input id="wpedit_feedblitz_signup_email" name="EMAIL" type="text" value="'.$admin_email.'" style="width:50%;margin-right:10px;" /><input id="wpedit_feedblitz_signup" type="button" value="Subscribe me! &raquo;" class="button-primary" />';
 			echo '</div>';
 			
 			echo '<div style="width:30%;padding:10px;float:left;margin-left:20px;">';
-			echo '<h3>';
-			_e('Other Plugin News', 'wp_edit_langs');
-			echo '</h3>';
-			_e('* A stable version of WP Edit will soon be available on our <a target="_blank" href="https://wpeditpro.com">Website</a>. The stable version will contain some options not available in the free version.', 'wp_edit_langs');
-			echo '<br /><br />';
-			_e('* Plugin documentation is being added to our <a target="_blank" href="http://learn.wpeditpro.com">Knowledge Base</a>. Check back frequently for more tutorial articles.', 'wp_edit_langs');
+				echo '<h3>'; _e('Other Plugin News', 'wp_edit_langs'); echo '</h3>';
+				_e('* Plugin documentation is being added to our <a target="_blank" href="http://learn.wpeditpro.com">Knowledge Base</a>. Check back frequently for more tutorial articles.', 'wp_edit_langs');
 			echo '</div>';
 			
 			echo '<div style="clear:both;"></div>';

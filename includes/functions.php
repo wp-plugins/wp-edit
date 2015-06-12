@@ -759,7 +759,7 @@ function wp_edit_user_specific_init() {
 					'show_date' => 1
 				));
 			echo "</div>";
-			echo '<p style="text-align:center;border-top: #000 1px solid;padding:5px;"><a href="http://www.wpeditpro.com/">WP Edit Pro</a> - Visual Wordpress Editor</p>';
+			echo '<p style="text-align:center;border-top: #000 1px solid;padding:5px;"><a target="_blank" href="https://wpeditpro.com/">WP Edit Pro</a> - Visual Wordpress Editor</p>';
 		}
 		function wp_edit_user_configure_widget() {
 			$jwl_widget_id = 'jwl_user_tinymce_dashboard_widget'; // This must be the same ID we set in wp_add_dashboard_widget
