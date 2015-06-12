@@ -12,8 +12,6 @@ Take complete control over the WordPress content editor.
 
 == Description ==
 
-[youtube http://www.youtube.com/watch?v=N-VAnsK9A-Q]
-
 = Introduction =
 For a riveting video introduction into the possibilities available with WP Edit; please visit [Jupiter Jim's Marketing Team](http://jupiterjimsmarketingteam.com/wordpress-video-tutorials/change-font-size-family-wordpress/).
 
