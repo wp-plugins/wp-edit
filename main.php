@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: https://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 3.3
+ * Version: 3.4
  * Author: Josh Lobe
  * Author URI: https://wpeditpro.com
  * License: GPL2
@@ -48,8 +48,7 @@ class wp_edit_class {
 		'shortcodes_in_excerpts' => '0',
 		'post_excerpt_editor' => '0',
 		'page_excerpt_editor' => '0',
-		'profile_editor' => '0',
-		'php_widgets' => '0'
+		'profile_editor' => '0'
 	);
 	public $global_options_posts = array(
 		'post_title_field' => 'Enter title here',
@@ -1000,7 +999,6 @@ class wp_edit_class {
                                 $post_excerpt_editor = isset($options_general['post_excerpt_editor']) && $options_general['post_excerpt_editor'] === '1' ? 'checked="checked"' : '';
                                 $page_excerpt_editor = isset($options_general['page_excerpt_editor']) && $options_general['page_excerpt_editor'] === '1' ? 'checked="checked"' : '';
                                 $profile_editor = isset($options_general['profile_editor']) && $options_general['profile_editor'] === '1' ? 'checked="checked"' : '';
-                                $php_widgets = isset($options_general['php_widgets']) && $options_general['php_widgets'] === '1' ? 'checked="checked"' : '';
                                 ?>
                                 
                                 <table cellpadding="8">
@@ -1039,12 +1037,6 @@ class wp_edit_class {
                                     <td class="jwl_user_cell">
                                         <input id="profile_editor" type="checkbox" value="1" name="profile_editor" <?php echo $profile_editor; ?> />
                                         <label for="profile_editor"><?php _e('Use modified editor in profile biography field.', 'wp_edit_langs'); ?></label>
-                                    </td>
-                                </tr>
-                                <tr><td><?php _e('PHP Widgets', 'wp_edit_langs'); ?></td>
-                                    <td>
-                                    <input id="php_widgets" type="checkbox" value="1" name="php_widgets" <?php echo $php_widgets; ?> />
-                                    <label for="php_widgets"><?php _e('Adds a new widget for PHP code.', 'wp_edit_langs'); ?></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1926,7 +1918,6 @@ class wp_edit_class {
 			$options_general['post_excerpt_editor'] = isset($_POST['post_excerpt_editor']) ? '1' : '0';
 			$options_general['page_excerpt_editor'] = isset($_POST['page_excerpt_editor']) ? '1' : '0';
 			$options_general['profile_editor'] = isset($_POST['profile_editor']) ? '1' : '0';
-			$options_general['php_widgets'] = isset($_POST['php_widgets']) ? '1' : '0';
 			
 			update_option('wp_edit_general', $options_general);
 			
